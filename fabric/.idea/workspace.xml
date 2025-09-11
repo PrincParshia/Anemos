@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="413ea06c-a031-4d1c-8782-46070f85e9c3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/princ/anemos/AnemosConstants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/princ/anemos/client/Anemos.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/princ/anemos/client/KeyMappingImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/princ/anemos/client/OptionInstanceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/princ/anemos/config/AnemosConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/princ/anemos/config/AnemosInternalConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/princ/anemos/mixin/FogRendererMixin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/princ/anemos/mixin/GameRendererMixin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/princ/anemos/mixin/LivingEntityMixin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/princ/anemos/mixin/OptionsMixin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/princ/anemos/mixin/SkyRendererMixin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/princ/anemos/mixin/SliderControlMixin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/princ/anemos/util/MobEffectUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/princ/anemos/util/UnitValueConverter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/anemos.accesswidener" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/anemos.mixins.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/anemos.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/anemos/lang/en_us.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fabric.mod.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../neoforge/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../neoforge/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../neoforge/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../neoforge/gradle.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../neoforge/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../neoforge/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../neoforge/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../neoforge/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../neoforge/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../neoforge/src/main/java/princ/anemos/Anemos.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../neoforge/src/main/java/princ/anemos/AnemosConstants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../neoforge/src/main/java/princ/anemos/client/KeyInputConstants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../neoforge/src/main/java/princ/anemos/client/KeyMappingImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../neoforge/src/main/java/princ/anemos/client/OptionInstanceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../neoforge/src/main/java/princ/anemos/config/AnemosConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../neoforge/src/main/java/princ/anemos/config/AnemosInternalConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../neoforge/src/main/java/princ/anemos/mixin/FogRendererMixin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../neoforge/src/main/java/princ/anemos/mixin/GameRendererMixin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../neoforge/src/main/java/princ/anemos/mixin/LivingEntityMixin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../neoforge/src/main/java/princ/anemos/mixin/OptionsMixin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../neoforge/src/main/java/princ/anemos/mixin/SkyRendererMixin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../neoforge/src/main/java/princ/anemos/mixin/SliderControlMixin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../neoforge/src/main/java/princ/anemos/util/MobEffectUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../neoforge/src/main/java/princ/anemos/util/UnitValueConverter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../neoforge/src/main/resources/META-INF/accesstransformer.cfg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../neoforge/src/main/resources/anemos.mixins.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../neoforge/src/main/resources/anemos.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../neoforge/src/main/resources/assets/anemos/lang/en_us.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../neoforge/src/main/templates/META-INF/neoforge.mods.toml" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Anemos" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Anemos" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Anemos" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Anemos" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="fabric" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="32Y7acjl8ye3FysxbQAwMcnhh0I" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Download Sources.executor": "Run",
+    "Gradle.fabric [build].executor": "Run",
+    "Gradle.fabric [runClient].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "dev",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/princ/IdeaProjects/Anemos/dev/fabric"
+  }
+}]]></component>
+  <component name="RunManager" selected="Gradle.fabric [build]">
+    <configuration name="fabric [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="fabric [runClient]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="runClient" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.fabric [build]" />
+        <item itemvalue="Gradle.fabric [runClient]" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="413ea06c-a031-4d1c-8782-46070f85e9c3" name="Changes" comment="" />
+      <created>1757585716691</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1757585716691</updated>
+    </task>
+    <servers />
+  </component>
+</project>

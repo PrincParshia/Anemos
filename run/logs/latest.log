@@ -1,0 +1,163 @@
+[22:25:28] [main/INFO] (FabricLoader/GameProvider) Loading Minecraft 1.21.6 with Fabric Loader 0.17.2
+[22:25:29] [main/INFO] (FabricLoader) Loading 54 mods:
+	- anemos 1.1.0
+	- fabric-api 0.128.2+1.21.6
+	- fabric-api-base 0.4.64+9ec45cd896
+	- fabric-api-lookup-api-v1 1.6.100+946bf4c396
+	- fabric-biome-api-v1 16.0.11+946bf4c396
+	- fabric-block-api-v1 1.1.3+946bf4c396
+	- fabric-block-view-api-v2 1.0.31+946bf4c396
+	- fabric-client-gametest-api-v1 4.2.5+98137fcb96
+	- fabric-command-api-v2 2.2.53+946bf4c396
+	- fabric-content-registries-v0 10.0.18+946bf4c396
+	- fabric-convention-tags-v1 2.1.38+7f945d5b96
+	- fabric-convention-tags-v2 2.15.3+946bf4c396
+	- fabric-crash-report-info-v1 0.3.15+946bf4c396
+	- fabric-data-attachment-api-v1 1.8.10+946bf4c396
+	- fabric-data-generation-api-v1 23.2.3+c265f73696
+	- fabric-dimensions-v1 4.0.19+946bf4c396
+	- fabric-entity-events-v1 2.1.1+c9e4727396
+	- fabric-events-interaction-v0 4.0.23+946bf4c396
+	- fabric-game-rule-api-v1 1.0.73+12a186f696
+	- fabric-gametest-api-v1 3.1.9+39ce47f596
+	- fabric-item-api-v1 11.4.3+946bf4c396
+	- fabric-item-group-api-v1 4.2.13+946bf4c396
+	- fabric-key-binding-api-v1 1.0.65+946bf4c396
+	- fabric-language-kotlin 1.12.1+kotlin.2.0.20
+	- fabric-lifecycle-events-v1 2.6.3+db4dfd8596
+	- fabric-loot-api-v2 3.0.55+3f89f5a596
+	- fabric-loot-api-v3 2.0.2+946bf4c396
+	- fabric-message-api-v1 6.1.1+946bf4c396
+	- fabric-model-loading-api-v1 5.2.5+946bf4c396
+	- fabric-networking-api-v1 5.0.1+946bf4c396
+	- fabric-object-builder-api-v1 21.1.7+946bf4c396
+	- fabric-particles-v1 4.1.7+946bf4c396
+	- fabric-permissions-api-v0 0.4.0
+	- fabric-recipe-api-v1 8.1.14+946bf4c396
+	- fabric-registry-sync-v0 6.1.27+946bf4c396
+	- fabric-renderer-api-v1 7.0.2+946bf4c396
+	- fabric-renderer-indigo 4.0.2+946bf4c396
+	- fabric-rendering-fluids-v1 3.1.30+fa6cb72b96
+	- fabric-rendering-v1 12.4.0+e8d43c7696
+	- fabric-resource-conditions-api-v1 5.0.24+946bf4c396
+	- fabric-resource-loader-v0 3.1.11+946bf4c396
+	- fabric-screen-api-v1 2.0.51+946bf4c396
+	- fabric-screen-handler-api-v1 1.3.136+946bf4c396
+	- fabric-sound-api-v1 1.0.42+946bf4c396
+	- fabric-tag-api-v1 1.2.1+946bf4c396
+	- fabric-transfer-api-v1 6.0.5+946bf4c396
+	- fabric-transitive-access-wideners-v1 6.4.1+ac3e15d196
+	- fabricloader 0.17.2
+	- fzzy_config 0.7.2+1.21.6
+	- java 21
+	- minecraft 1.21.6
+	- mixinextras 0.5.0
+	- modmenu 15.0.0
+	- sodium 0.6.13+mc1.21.6
+[22:25:30] [main/INFO] (FabricLoader/Mixin) SpongePowered MIXIN Subsystem Version=0.8.7 Source=file:/home/princ/.gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.16.3+mixin.0.8.7/3e535042688d1265447e52ad86950b7d9678a5fa/sponge-mixin-0.16.3+mixin.0.8.7.jar Service=Knot/Fabric Env=CLIENT
+[22:25:30] [main/INFO] (FabricLoader/Mixin) Loaded Fabric development mappings for mixin remapper!
+[22:25:30] [main/INFO] (FabricLoader/Mixin) Compatibility level set to JAVA_21
+[22:25:31] [main/INFO] (Sodium) Loaded configuration file for Sodium: 43 options available, 0 override(s) found
+[22:25:32] [main/INFO] (Sodium-GraphicsAdapterProbe) Searching for graphics cards...
+[22:25:32] [main/INFO] (Sodium-GraphicsAdapterProbe) Found graphics adapter: LinuxPciAdapterInfo[vendor=INTEL, name=Alder Lake-P Integrated Graphics Controller, pciVendorId=0x8086, pciDeviceId=0x4626]
+[22:25:32] [main/WARN] (Sodium-Workarounds) Sodium has applied one or more workarounds to prevent crashes or other issues on your system: [NO_ERROR_CONTEXT_UNSUPPORTED]
+[22:25:32] [main/WARN] (Sodium-Workarounds) This is not necessarily an issue, but it may result in certain features or optimizations being disabled. You can sometimes fix these issues by upgrading your graphics driver.
+[22:25:33] [main/INFO] (FabricLoader/MixinExtras|Service) Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.0).
+[22:25:36] [Datafixer Bootstrap/INFO] (Minecraft) 269 Datafixer optimizations took 1893 milliseconds
+[22:25:45] [Render thread/INFO] (Minecraft) Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, name=PROD]
+[22:25:45] [Render thread/INFO] (Minecraft) Setting user: Player741
+[22:25:45] [Render thread/INFO] (fzzy_config) Loaded config fzzy_config:keybinds in 208ms
+[22:25:45] [Render thread/INFO] (Mod Menu/Update Checker) Checking mod updates...
+[22:25:45] [Render thread/INFO] (Indigo) [Indigo] Different rendering plugin detected; not applying Indigo.
+[22:25:46] [Render thread/INFO] (fzzy_config) Loaded config anemos:general in 116ms
+[22:25:46] [Render thread/INFO] (fzzy_config) Loaded config anemos:internal in 42ms
+[22:25:46] [Render thread/INFO] (Minecraft) Backend library: LWJGL version 3.3.3-snapshot
+[22:25:46] [Render thread/INFO] (Minecraft) OpenGL Vendor: Intel
+[22:25:46] [Render thread/INFO] (Minecraft) OpenGL Renderer: Mesa Intel(R) Graphics (ADL GT2)
+[22:25:46] [Render thread/INFO] (Minecraft) OpenGL Version: 4.6 (Core Profile) Mesa 25.2.1-arch1.4
+[22:25:46] [Render thread/INFO] (Minecraft) Using optional rendering extensions: GL_ARB_buffer_storage, GL_KHR_debug, GL_ARB_vertex_attrib_binding, GL_ARB_direct_state_access
+[22:25:47] [Render thread/INFO] (Minecraft) Reloading ResourceManager: vanilla, fabric, anemos, fabric-api, fabric-api-base, fabric-api-lookup-api-v1, fabric-biome-api-v1, fabric-block-api-v1, fabric-block-view-api-v2, fabric-client-gametest-api-v1, fabric-command-api-v2, fabric-content-registries-v0, fabric-convention-tags-v1, fabric-convention-tags-v2, fabric-crash-report-info-v1, fabric-data-attachment-api-v1, fabric-data-generation-api-v1, fabric-dimensions-v1, fabric-entity-events-v1, fabric-events-interaction-v0, fabric-game-rule-api-v1, fabric-gametest-api-v1, fabric-item-api-v1, fabric-item-group-api-v1, fabric-key-binding-api-v1, fabric-language-kotlin, fabric-lifecycle-events-v1, fabric-loot-api-v2, fabric-loot-api-v3, fabric-message-api-v1, fabric-model-loading-api-v1, fabric-networking-api-v1, fabric-object-builder-api-v1, fabric-particles-v1, fabric-recipe-api-v1, fabric-registry-sync-v0, fabric-renderer-api-v1, fabric-renderer-indigo, fabric-rendering-fluids-v1, fabric-rendering-v1, fabric-resource-conditions-api-v1, fabric-resource-loader-v0, fabric-screen-api-v1, fabric-screen-handler-api-v1, fabric-sound-api-v1, fabric-tag-api-v1, fabric-transfer-api-v1, fabric-transitive-access-wideners-v1, fabricloader, fzzy_config, modmenu, sodium
+[22:25:47] [Worker-Main-10/INFO] (Minecraft) Found unifont_all_no_pua-16.0.03.hex, loading
+[22:25:47] [Worker-Main-11/INFO] (Minecraft) Found unifont_pua-16.0.03.hex, loading
+[22:25:48] [Worker-Main-10/INFO] (Minecraft) Found unifont_jp_patch-16.0.03.hex, loading
+[22:25:50] [Render thread/INFO] (Minecraft) OpenAL initialized on device Built-in Audio Analog Stereo
+[22:25:50] [Render thread/INFO] (Minecraft) Sound engine started
+[22:25:50] [Render thread/INFO] (Minecraft) Created: 1024x512x4 minecraft:textures/atlas/blocks.png-atlas
+[22:25:50] [Render thread/INFO] (Minecraft) Created: 256x256x4 minecraft:textures/atlas/signs.png-atlas
+[22:25:50] [Render thread/INFO] (Minecraft) Created: 512x512x4 minecraft:textures/atlas/banner_patterns.png-atlas
+[22:25:50] [Render thread/INFO] (Minecraft) Created: 512x512x4 minecraft:textures/atlas/shield_patterns.png-atlas
+[22:25:50] [Render thread/INFO] (Minecraft) Created: 2048x1024x4 minecraft:textures/atlas/armor_trims.png-atlas
+[22:25:50] [Render thread/INFO] (Minecraft) Created: 256x256x4 minecraft:textures/atlas/chest.png-atlas
+[22:25:50] [Render thread/INFO] (Minecraft) Created: 128x64x4 minecraft:textures/atlas/decorated_pot.png-atlas
+[22:25:50] [Render thread/INFO] (Minecraft) Created: 512x256x4 minecraft:textures/atlas/shulker_boxes.png-atlas
+[22:25:50] [Render thread/INFO] (Minecraft) Created: 512x256x4 minecraft:textures/atlas/beds.png-atlas
+[22:25:50] [Render thread/INFO] (Minecraft) Created: 64x64x0 minecraft:textures/atlas/map_decorations.png-atlas
+[22:25:50] [Render thread/INFO] (Minecraft) Created: 512x256x0 minecraft:textures/atlas/particles.png-atlas
+[22:25:50] [Render thread/INFO] (Minecraft) Created: 512x256x0 minecraft:textures/atlas/paintings.png-atlas
+[22:25:50] [Render thread/INFO] (Minecraft) Created: 1024x1024x0 minecraft:textures/atlas/gui.png-atlas
+[22:25:56] [Render thread/INFO] (Minecraft) Loaded 1407 recipes
+[22:25:56] [Render thread/INFO] (Minecraft) Loaded 1520 advancements
+[22:25:56] [Render thread/INFO] (BiomeModificationImpl) Applied 0 biome modifications to 0 of 65 new biomes in 1.001 ms
+[22:25:56] [Server thread/INFO] (Minecraft) Starting integrated minecraft server version 1.21.6
+[22:25:56] [Server thread/INFO] (Minecraft) Generating keypair
+[22:25:57] [Server thread/INFO] (Minecraft) Preparing start region for dimension minecraft:overworld
+[22:25:58] [Render thread/INFO] (Minecraft) Preparing spawn area: 0%
+[22:25:58] [Render thread/INFO] (Minecraft) Preparing spawn area: 0%
+[22:25:58] [Render thread/INFO] (Minecraft) Preparing spawn area: 0%
+[22:25:58] [Render thread/INFO] (Minecraft) Time elapsed: 1460 ms
+[22:25:58] [Server thread/INFO] (Minecraft) Changing view distance to 12, from 10
+[22:25:58] [Server thread/INFO] (Minecraft) Changing simulation distance to 12, from 0
+[22:25:59] [Server thread/INFO] (Minecraft) Player741[local:E:3ccf3abd] logged in with entity id 23 at (17.51169977077245, 105.36550840027436, 74.2616924616889)
+[22:25:59] [Server thread/INFO] (Minecraft) Player741 joined the game
+[22:25:59] [Render thread/INFO] (ChunkBuilder) Started 10 worker threads
+[22:25:59] [Render thread/INFO] (Minecraft) Loaded 2 advancements
+[22:26:00] [Render thread/INFO] (Minecraft) Resizing Dynamic Transforms UBO, capacity limit of 2 reached during a single frame. New capacity will be 4.
+[22:26:00] [Render thread/INFO] (Minecraft) Resizing Dynamic Transforms UBO, capacity limit of 4 reached during a single frame. New capacity will be 8.
+[22:26:04] [Render thread/INFO] (fzzy_config) Saved config general to file /home/princ/IdeaProjects/Anemos/dev/fabric/run/config/anemos/general.toml
+[22:26:04] [Render thread/INFO] (fzzy_config) Saved config internal to file /home/princ/IdeaProjects/Anemos/dev/fabric/run/config/anemos/internal.toml
+[22:26:05] [Render thread/INFO] (fzzy_config) Saved config general to file /home/princ/IdeaProjects/Anemos/dev/fabric/run/config/anemos/general.toml
+[22:26:05] [Render thread/INFO] (fzzy_config) Saved config internal to file /home/princ/IdeaProjects/Anemos/dev/fabric/run/config/anemos/internal.toml
+[22:26:07] [Render thread/INFO] (fzzy_config) Saved config general to file /home/princ/IdeaProjects/Anemos/dev/fabric/run/config/anemos/general.toml
+[22:26:07] [Render thread/INFO] (fzzy_config) Saved config internal to file /home/princ/IdeaProjects/Anemos/dev/fabric/run/config/anemos/internal.toml
+[22:26:10] [Server thread/INFO] (Minecraft) [Player741: Applied effect Blindness to Player741]
+[22:26:10] [Render thread/INFO] (Minecraft) [System] [CHAT] Applied effect Blindness to Player741
+[22:26:11] [Render thread/INFO] (fzzy_config) Saved config general to file /home/princ/IdeaProjects/Anemos/dev/fabric/run/config/anemos/general.toml
+[22:26:12] [Render thread/INFO] (fzzy_config) Saved config general to file /home/princ/IdeaProjects/Anemos/dev/fabric/run/config/anemos/general.toml
+[22:26:13] [Render thread/INFO] (fzzy_config) Saved config general to file /home/princ/IdeaProjects/Anemos/dev/fabric/run/config/anemos/general.toml
+[22:26:15] [Render thread/INFO] (fzzy_config) Saved config general to file /home/princ/IdeaProjects/Anemos/dev/fabric/run/config/anemos/general.toml
+[22:26:17] [Render thread/INFO] (fzzy_config) Saved config general to file /home/princ/IdeaProjects/Anemos/dev/fabric/run/config/anemos/general.toml
+[22:26:20] [Render thread/INFO] (fzzy_config) Saved config general to file /home/princ/IdeaProjects/Anemos/dev/fabric/run/config/anemos/general.toml
+[22:26:20] [Server thread/INFO] (Minecraft) Saving and pausing game...
+[22:26:20] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[22:26:20] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[22:26:20] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[22:26:23] [Render thread/INFO] (fzzy_config) Saved config general to file /home/princ/IdeaProjects/Anemos/dev/fabric/run/config/anemos/general.toml
+[22:26:24] [Render thread/INFO] (fzzy_config) Saved config general to file /home/princ/IdeaProjects/Anemos/dev/fabric/run/config/anemos/general.toml
+[22:26:25] [Render thread/INFO] (fzzy_config) Saved config general to file /home/princ/IdeaProjects/Anemos/dev/fabric/run/config/anemos/general.toml
+[22:26:26] [Server thread/INFO] (Minecraft) Saving and pausing game...
+[22:26:26] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[22:26:26] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[22:26:26] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[22:26:30] [Render thread/INFO] (Minecraft) [System] [CHAT] Incorrect argument for command
+[22:26:30] [Render thread/INFO] (Minecraft) [System] [CHAT] effect clear\\<--[HERE]
+[22:26:33] [Server thread/INFO] (Minecraft) [Player741: Removed every effect from Player741]
+[22:26:33] [Render thread/INFO] (Minecraft) [System] [CHAT] Removed every effect from Player741
+[22:26:35] [Server thread/INFO] (Minecraft) Saving and pausing game...
+[22:26:35] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[22:26:35] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[22:26:35] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[22:26:36] [Server thread/INFO] (Minecraft) Player741 lost connection: Disconnected
+[22:26:36] [Server thread/INFO] (Minecraft) Player741 left the game
+[22:26:36] [Server thread/INFO] (Minecraft) Stopping singleplayer server as player logged out
+[22:26:36] [Server thread/INFO] (Minecraft) Stopping server
+[22:26:36] [Server thread/INFO] (Minecraft) Saving players
+[22:26:36] [Server thread/INFO] (Minecraft) Saving worlds
+[22:26:36] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:overworld
+[22:26:36] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_end
+[22:26:36] [Server thread/INFO] (Minecraft) Saving chunks for level 'ServerLevel[New World]'/minecraft:the_nether
+[22:26:36] [Server thread/INFO] (Minecraft) ThreadedAnvilChunkStorage (New World): All chunks are saved
+[22:26:36] [Server thread/INFO] (Minecraft) ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[22:26:36] [Server thread/INFO] (Minecraft) ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[22:26:36] [Server thread/INFO] (Minecraft) ThreadedAnvilChunkStorage: All dimensions are saved
+[22:26:36] [Render thread/INFO] (ChunkBuilder) Stopping worker threads
+[22:26:36] [Render thread/INFO] (Minecraft) Stopping!

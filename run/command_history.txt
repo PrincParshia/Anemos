@@ -1,0 +1,18 @@
+/time set night
+/time set day
+/effect give Player796 minecraft:blindness
+/effect give Player796 minecraft:darkness
+/effect clear
+/time set night
+/time set day
+/effect give Player796 minecraft:darkness
+/effect give Player965 minecraft:darkness
+/effect clear
+/effect give Player89 minecraft:blindness
+/effect clear
+/time set night
+/effect give @a minecraft:blindness
+/effect clear
+/effect give @a minecraft:blindness
+/effect clear\\
+/effect clear
