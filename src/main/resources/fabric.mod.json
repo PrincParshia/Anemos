@@ -16,12 +16,12 @@
 		]
 	},
 	"mixins": [
-		"anemos.mixins.json"
+		"anemos.client.mixins.json"
 	],
 	"accessWidener": "anemos.accesswidener",
 	"depends": {
-		"fabricloader": ">=0.17.0",
-		"minecraft": ">=1.21.6",
+		"fabricloader": ">=0.17.2",
+		"minecraft": "~1.21.10",
 		"java": ">=21",
 		"fabric-api": "*",
 		"fzzy_config": "*"

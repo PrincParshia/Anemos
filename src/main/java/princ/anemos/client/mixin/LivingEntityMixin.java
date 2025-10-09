@@ -1,4 +1,4 @@
-package princ.anemos.mixin;
+package princ.anemos.client.mixin;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

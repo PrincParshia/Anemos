@@ -6,11 +6,13 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.KeyMapping;
+import net.minecraft.resources.ResourceLocation;
 
 import static princ.anemos.AnemosConstants.*;
 
 @Environment(EnvType.CLIENT)
 public class KeyMappingImpl {
+    public static final KeyMapping.Category KEY_CATEGORY = KeyMapping.Category.register(ResourceLocation.fromNamespaceAndPath(NAMESPACE, "misc"));
     public static final KeyMapping gammaKey = new KeyMapping(GENERIC_KEY_NAMESPACE + ".gamma", InputConstants.Type.KEYSYM, InputConstants.KEY_G, KEY_CATEGORY);
     public static final KeyMapping fakeNightVisionKey = new KeyMapping(GENERIC_KEY_NAMESPACE + ".fnv", InputConstants.Type.KEYSYM, InputConstants.KEY_N, KEY_CATEGORY);
     public static final KeyMapping removeBlindnessKey = new KeyMapping(GENERIC_KEY_NAMESPACE + ".rmb", InputConstants.Type.KEYSYM, InputConstants.KEY_B, KEY_CATEGORY);

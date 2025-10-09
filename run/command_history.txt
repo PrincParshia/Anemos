@@ -16,3 +16,7 @@
 /effect give @a minecraft:blindness
 /effect clear\\
 /effect clear
+/time set day
+/effect give @a minecraft:blindness
+/effect clear
+/effect give @a minecraft:darkness

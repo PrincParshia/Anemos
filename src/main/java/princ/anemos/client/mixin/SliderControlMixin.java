@@ -1,4 +1,4 @@
-package princ.anemos.mixin;
+package princ.anemos.client.mixin;
 
 import net.caffeinemc.mods.sodium.client.gui.options.Option;
 import net.caffeinemc.mods.sodium.client.gui.options.control.ControlValueFormatter;

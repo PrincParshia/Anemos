@@ -1,33 +1,33 @@
 {
   "mappings": {
-    "princ/anemos/mixin/FogRendererMixin": {
+    "princ/anemos/client/mixin/FogRendererMixin": {
       "Lnet/minecraft/client/renderer/GameRenderer;getNightVisionScale(Lnet/minecraft/world/entity/LivingEntity;F)F": "Lnet/minecraft/class_757;method_3174(Lnet/minecraft/class_1309;F)F",
       "computeFogColor": "Lnet/minecraft/class_758;method_62185(Lnet/minecraft/class_4184;FLnet/minecraft/class_638;IFZ)Lorg/joml/Vector4f;"
     },
-    "princ/anemos/mixin/GameRendererMixin": {
+    "princ/anemos/client/mixin/GameRendererMixin": {
       "getNightVisionScale": "Lnet/minecraft/class_757;method_3174(Lnet/minecraft/class_1309;F)F"
     },
-    "princ/anemos/mixin/LivingEntityMixin": {
+    "princ/anemos/client/mixin/LivingEntityMixin": {
       "hasEffect": "Lnet/minecraft/class_1309;method_6059(Lnet/minecraft/class_6880;)Z"
     },
-    "princ/anemos/mixin/OptionsMixin": {
+    "princ/anemos/client/mixin/OptionsMixin": {
       "<init>": "Lnet/minecraft/class_315;<init>(Lnet/minecraft/class_310;Ljava/io/File;)V",
       "Lnet/minecraft/client/Options;gamma:Lnet/minecraft/client/OptionInstance;": "Lnet/minecraft/class_315;field_1840:Lnet/minecraft/class_7172;"
     }
   },
   "data": {
     "named:intermediary": {
-      "princ/anemos/mixin/FogRendererMixin": {
+      "princ/anemos/client/mixin/FogRendererMixin": {
         "Lnet/minecraft/client/renderer/GameRenderer;getNightVisionScale(Lnet/minecraft/world/entity/LivingEntity;F)F": "Lnet/minecraft/class_757;method_3174(Lnet/minecraft/class_1309;F)F",
         "computeFogColor": "Lnet/minecraft/class_758;method_62185(Lnet/minecraft/class_4184;FLnet/minecraft/class_638;IFZ)Lorg/joml/Vector4f;"
       },
-      "princ/anemos/mixin/GameRendererMixin": {
+      "princ/anemos/client/mixin/GameRendererMixin": {
         "getNightVisionScale": "Lnet/minecraft/class_757;method_3174(Lnet/minecraft/class_1309;F)F"
       },
-      "princ/anemos/mixin/LivingEntityMixin": {
+      "princ/anemos/client/mixin/LivingEntityMixin": {
         "hasEffect": "Lnet/minecraft/class_1309;method_6059(Lnet/minecraft/class_6880;)Z"
       },
-      "princ/anemos/mixin/OptionsMixin": {
+      "princ/anemos/client/mixin/OptionsMixin": {
         "<init>": "Lnet/minecraft/class_315;<init>(Lnet/minecraft/class_310;Ljava/io/File;)V",
         "Lnet/minecraft/client/Options;gamma:Lnet/minecraft/client/OptionInstance;": "Lnet/minecraft/class_315;field_1840:Lnet/minecraft/class_7172;"
       }

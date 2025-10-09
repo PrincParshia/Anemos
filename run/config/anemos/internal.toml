@@ -4,7 +4,7 @@ version = 0
 [gamma]
 min = 0.0
 max = 15.0
-prev = 0.0
+prev = 67.0
 
 [fakeNightVision]
 minScale = 0.0

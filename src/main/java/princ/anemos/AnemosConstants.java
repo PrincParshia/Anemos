@@ -19,7 +19,6 @@ public class AnemosConstants {
     public static final String NAMESPACE = "anemos";
     public static final String NAME = "Anemos";
     public static final Logger LOGGER = LoggerFactory.getLogger(NAME);
-    public static final String KEY_CATEGORY = "key.categories." + NAMESPACE;
     public static final String GENERIC_KEY_NAMESPACE = "key." + NAMESPACE;
     public static final String GENERIC_CONFIG_TRANSLATION_PREFIX = "config." + NAMESPACE;
     public static final AnemosConfig config = ConfigApiJava.registerAndLoadConfig(AnemosConfig::new, RegisterType.CLIENT);
