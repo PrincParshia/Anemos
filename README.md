@@ -14,7 +14,6 @@ Got hit with Blindness or Darkness? The bypass system cancels those visual effec
 * Maximum visibility — also known as fullbright.
 * A fake night vision toggle that supports shaders.
 * Bypass for Blindness and Darkness.
-* ~~Per-fog-type configuration (Terrain, sky, etc).~~
 * Smooth transition effects.
 * Deep customization — without breaking things.
 
