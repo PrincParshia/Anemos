@@ -25,3 +25,6 @@ Got hit with Blindness or Darkness? The bypass system cancels those visual effec
 * Press `B`/`M` to bypass Blindness/Darkness effects.
 
 Open the config screen via Mod Menu or run the `/configure anemos` command to adjust features.
+
+---
+<img src="https://github.com/PrinceParshia/Anemos/blob/assets/gamma-transition.gif?raw=true" width="100%" />
