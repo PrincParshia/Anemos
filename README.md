@@ -1,4 +1,5 @@
-[![CurseForge](https://img.shields.io/badge/CurseForge-0?style=for-the-badge&logo=curseforge&color=black)](https://www.curseforge.com/minecraft/mc-mods/anemos) [![Modrinth](https://img.shields.io/badge/Modrinth-0?style=for-the-badge&logo=modrinth&color=grey)](https://modrinth.com/mod/anemos)
+[![CurseForge](https://img.shields.io/badge/CurseForge-0?style=for-the-badge&logo=curseforge&color=black)](https://www.curseforge.com/minecraft/mc-mods/anemos)
+[![Modrinth](https://img.shields.io/badge/Modrinth-0?style=for-the-badge&logo=modrinth&color=grey)](https://modrinth.com/mod/anemos)
 
 ---
 ## 📗 DESCRIPTION
