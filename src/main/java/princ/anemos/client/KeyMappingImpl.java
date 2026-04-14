@@ -4,42 +4,52 @@ import com.mojang.blaze3d.platform.InputConstants;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.minecraft.client.KeyMapping;
 
 import static princ.anemos.AnemosConstants.*;
 
 @Environment(EnvType.CLIENT)
 public class KeyMappingImpl {
-    public static final KeyMapping gammaKey = new KeyMapping(GENERIC_KEY_NAMESPACE + ".gamma", InputConstants.Type.KEYSYM, InputConstants.KEY_G, KEY_CATEGORY);
-    public static final KeyMapping fakeNightVisionKey = new KeyMapping(GENERIC_KEY_NAMESPACE + ".fnv", InputConstants.Type.KEYSYM, InputConstants.KEY_N, KEY_CATEGORY);
-    public static final KeyMapping removeBlindnessKey = new KeyMapping(GENERIC_KEY_NAMESPACE + ".rmb", InputConstants.Type.KEYSYM, InputConstants.KEY_B, KEY_CATEGORY);
-    public static final KeyMapping removeDarknessKey = new KeyMapping(GENERIC_KEY_NAMESPACE + ".rmd", InputConstants.Type.KEYSYM, InputConstants.KEY_M, KEY_CATEGORY);
+    public static final KeyMapping.Category CATEGORY = KeyMapping.Category.register(withDefaultNamespace("default"));
+    public static final KeyMapping GAMMA = new KeyMapping(withKeyMappingPrefix("gamma"), InputConstants.Type.KEYSYM, InputConstants.KEY_G, CATEGORY);
+    public static final KeyMapping FNV = new KeyMapping(withKeyMappingPrefix("fakeNightVision"), InputConstants.Type.KEYSYM, InputConstants.KEY_N, CATEGORY);
+    public static final KeyMapping RMB = new KeyMapping(withKeyMappingPrefix("removeBlindness"), InputConstants.Type.KEYSYM, InputConstants.KEY_B, CATEGORY);
+    public static final KeyMapping RMD = new KeyMapping(withKeyMappingPrefix("removeDarkness"), InputConstants.Type.KEYSYM, InputConstants.KEY_V, CATEGORY);
 
-    public static void registerMappings() {
-        KeyBindingHelper.registerKeyBinding(gammaKey);
+    public void registerAll() {
+        KeyMappingHelper.registerKeyMapping(GAMMA);
         ClientTickEvents.END_CLIENT_TICK.register(minecraft -> {
-            if (gammaKey.consumeClick()) adjustGamma(config.gamma.transition);
-            handleGammaTransition();
+            if (GAMMA.consumeClick()) {
+                adjustGamma(GAMMA_STATE, configGeneral.gamma.val, configInternal.gamma.prev, configGeneral.gamma.transition, configGeneral.gamma.transitionTime);
+            }
+            handleGammaTransition(GAMMA_STATE, configGeneral.gamma.transition);
         });
 
-        KeyBindingHelper.registerKeyBinding(fakeNightVisionKey);
+        KeyMappingHelper.registerKeyMapping(FNV);
         ClientTickEvents.END_CLIENT_TICK.register(minecraft -> {
-            adjustFakeNightVision();
-            if (fakeNightVisionKey.consumeClick()) adjustFakeNightVisionScale(config.fakeNightVision.transition);
-            handleFakeNightVisionScaleTransition();
+            if (FNV.consumeClick()) {
+                adjust(nightVisionScale(), FAKE_NIGHT_VISION_SCALE_STATE, configGeneral.fakeNightVision.enabled, configGeneral.fakeNightVision.transition, configGeneral.fakeNightVision.transitionTime);
+            }
+            handleTransition(nightVisionScale(), FAKE_NIGHT_VISION_SCALE_STATE, configGeneral.fakeNightVision.enabled, configGeneral.fakeNightVision.transition);
         });
 
-        KeyBindingHelper.registerKeyBinding(removeBlindnessKey);
+        KeyMappingHelper.registerKeyMapping(RMB);
         ClientTickEvents.END_CLIENT_TICK.register(minecraft -> {
-            if (removeBlindnessKey.consumeClick()) adjustRemoveBlindness(config.removeBlindness.transition);
-            handleRemoveBlindnessTransition();
+            if (RMB.consumeClick()) {
+                BLINDNESS_DISTANCE_STATE.resolveValues();
+                adjust(blindnessDistance(), BLINDNESS_DISTANCE_STATE, configGeneral.removeBlindness.enabled, configGeneral.removeBlindness.transition, configGeneral.removeBlindness.transitionTime);
+            }
+            handleTransition(blindnessDistance(), BLINDNESS_DISTANCE_STATE, configGeneral.removeBlindness.enabled, configGeneral.removeBlindness.transition);
         });
 
-        KeyBindingHelper.registerKeyBinding(removeDarknessKey);
+        KeyMappingHelper.registerKeyMapping(RMD);
         ClientTickEvents.END_CLIENT_TICK.register(minecraft -> {
-            if (removeDarknessKey.consumeClick()) adjustRemoveDarkness(config.removeDarkness.transition);
-            handleRemoveDarknessTransition();
+            if (RMD.consumeClick()) {
+                DARKNESS_DISTANCE_STATE.resolveValues();
+                adjust(darknessDistance(), DARKNESS_DISTANCE_STATE, configGeneral.removeDarkness.enabled, configGeneral.removeDarkness.transition, configGeneral.removeDarkness.transitionTime);
+            }
+            handleTransition(darknessDistance(), DARKNESS_DISTANCE_STATE, configGeneral.removeDarkness.enabled, configGeneral.removeDarkness.transition);
         });
     }
 }

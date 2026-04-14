@@ -2,215 +2,154 @@ package princ.anemos;
 
 import me.fzzyhmstrs.fzzy_config.api.ConfigApiJava;
 import me.fzzyhmstrs.fzzy_config.api.RegisterType;
+import me.fzzyhmstrs.fzzy_config.validation.misc.ValidatedBoolean;
+import me.fzzyhmstrs.fzzy_config.validation.number.ValidatedDouble;
 import me.fzzyhmstrs.fzzy_config.validation.number.ValidatedFloat;
+import me.fzzyhmstrs.fzzy_config.validation.number.ValidatedInt;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.OptionInstance;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.effect.MobEffects;
+import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import princ.anemos.config.AnemosConfig;
+import princ.anemos.config.AnemosConfigGeneral;
 import princ.anemos.config.AnemosConfigInternal;
-import princ.anemos.util.UnitValueConverter;
+import princ.anemos.state.*;
 
-import static princ.anemos.util.MobEffectUtil.*;
+import static princ.anemos.util.UnitValueConverter.*;
 
 public class AnemosConstants {
     public static final String NAMESPACE = "anemos";
-    public static final String NAME = "Anemos";
-    public static final Logger LOGGER = LoggerFactory.getLogger(NAME);
-    public static final String KEY_CATEGORY = "key.categories." + NAMESPACE;
-    public static final String GENERIC_KEY_NAMESPACE = "key." + NAMESPACE;
-    public static final String GENERIC_CONFIG_TRANSLATION_PREFIX = "config." + NAMESPACE;
-    public static final AnemosConfig config = ConfigApiJava.registerAndLoadConfig(AnemosConfig::new, RegisterType.CLIENT);
-    public static final AnemosConfigInternal configInternal = ConfigApiJava.registerAndLoadConfig(AnemosConfigInternal::new, RegisterType.SERVER);
+    public static final Logger LOGGER = LoggerFactory.getLogger(NAMESPACE);
+    public static final String CONFIG_TRANSLATION_ID = "config." + NAMESPACE;
+    public static final Minecraft minecraft = Minecraft.getInstance();
+    public static final AnemosConfigGeneral configGeneral = ConfigApiJava.registerAndLoadConfig(AnemosConfigGeneral::new, RegisterType.CLIENT);
+    public static final AnemosConfigInternal configInternal = ConfigApiJava.registerAndLoadNoGuiConfig(AnemosConfigInternal::new, RegisterType.CLIENT);
+    public static final GammaState GAMMA_STATE = new GammaState();
+    public static final NightVisionScaleState FAKE_NIGHT_VISION_SCALE_STATE = new NightVisionScaleState();
+    public static final BlindnessDistanceState BLINDNESS_DISTANCE_STATE = new BlindnessDistanceState();
+    public static final DarknessDistanceState DARKNESS_DISTANCE_STATE = new DarknessDistanceState();
+
+    public static Identifier withDefaultNamespace(final String string) {
+        return Identifier.fromNamespaceAndPath(NAMESPACE, string);
+    }
+
+    public static String withKeyMappingPrefix(final String string) {
+        return "key." + NAMESPACE + "." + string;
+    }
 
     public static OptionInstance<Double> gamma() {
-        return Minecraft.getInstance().options.gamma();
+        return minecraft.options.gamma();
     }
 
-    public static ValidatedFloat fnvScale() {
-        return config.fakeNightVision.scale;
+    public static ValidatedFloat nightVisionScale() {
+        return configInternal.fakeNightVision.scale;
     }
 
-    private static int gammaTransitionTime;
-    private static double targetGamma;
-    private static int elapsedGammaTransitionTime;
-    private static boolean execGammaTransition;
+    public static ValidatedFloat blindnessDistance() {
+        return configInternal.removeBlindness.dist;
+    }
 
-    public static void adjustGamma(boolean transition) {
+    public static ValidatedFloat darknessDistance() {
+        return configInternal.removeDarkness.dist;
+    }
+
+    public static void adjustGamma(final GammaState state, final ValidatedInt val, final ValidatedDouble prev, final boolean transition, final int transitionTime) {
         if (transition) {
-            if (!execGammaTransition) {
-                targetGamma = gamma().get() != UnitValueConverter.fromPercent(config.gamma.toggleValue.get()) ? UnitValueConverter.fromPercent(config.gamma.toggleValue.get()) : UnitValueConverter.fromPercent(configInternal.gamma.prev.get());
-                if (targetGamma == UnitValueConverter.fromPercent(config.gamma.toggleValue.get())) configInternal.gamma.prev.validateAndSet(UnitValueConverter.toPercent(gamma().get()));
-                gammaTransitionTime = config.gamma.transitionTime;
-                elapsedGammaTransitionTime = 0;
-                execGammaTransition = true;
+            if (!state.execTransition) {
+                state.targetVal = computeTargetVal(gamma().get(), fromPercent(val.get()), prev.get());
+                if (state.targetVal == fromPercent(val.get())) {
+                    prev.validateAndSet(gamma().get());
+                }
+                state.transitionTime = transitionTime;
+                state.elapsedTransitionTime = 0;
+                state.execTransition = true;
             } else {
-                targetGamma = targetGamma != UnitValueConverter.fromPercent(config.gamma.toggleValue.get()) ? UnitValueConverter.fromPercent(config.gamma.toggleValue.get()) : UnitValueConverter.fromPercent(configInternal.gamma.prev.get());
-                gammaTransitionTime = elapsedGammaTransitionTime;
-                elapsedGammaTransitionTime = 0;
+                state.targetVal = computeTargetVal(state.targetVal, fromPercent(val.get()), prev.get());
+                state.transitionTime = state.elapsedTransitionTime;
+                state.elapsedTransitionTime = 0;
             }
         } else {
-            targetGamma = gamma().get() != UnitValueConverter.fromPercent(config.gamma.toggleValue.get()) ? UnitValueConverter.fromPercent(config.gamma.toggleValue.get()) : UnitValueConverter.fromPercent(configInternal.gamma.prev.get());
-            if (targetGamma == UnitValueConverter.fromPercent(config.gamma.toggleValue.get())) configInternal.gamma.prev.validateAndSet(UnitValueConverter.toPercent(gamma().get()));
-            gamma().set(targetGamma);
-            config.save();
+            double targetVal = computeTargetVal(gamma().get(), fromPercent(val.get()), prev.get());
+            if (targetVal == fromPercent(val.get())) prev.validateAndSet(gamma().get());
+            gamma().set(targetVal);
             configInternal.save();
         }
     }
 
-    public static void handleGammaTransition() {
-        if (config.gamma.transition && execGammaTransition) {
-            if (gammaTransitionTime <= 0) {
-                execGammaTransition = false;
-                config.save();
+    public static void handleGammaTransition(final GammaState state, final boolean transition) {
+        if (transition && state.execTransition) {
+            if (state.transitionTime <= 0) {
+                state.execTransition = false;
                 configInternal.save();
             } else {
-                gamma().set(gamma().get() + ((targetGamma - gamma().get()) / gammaTransitionTime));
-                gammaTransitionTime--;
-                elapsedGammaTransitionTime++;
+                gamma().set(lerp(gamma().get(), state.targetVal, state.transitionTime));
+                state.transitionTime--;
+                state.elapsedTransitionTime++;
             }
         }
     }
 
-    private static boolean wasFakeNightVision;
-
-    public static void adjustFakeNightVision() {
-        if (fnvScale().get() == configInternal.fakeNightVision.minScale) {
-            config.fakeNightVision.enabled.validateAndSet(false);
-        }
-
-        if (!config.fakeNightVision.fog) {
-            if (hasEffect(MobEffects.NIGHT_VISION) && config.fakeNightVision.enabled.get()) {
-                adjustFakeNightVisionScale(config.fakeNightVision.transition);
-                wasFakeNightVision = true;
-            }
-
-            if (!hasEffect(MobEffects.NIGHT_VISION) && wasFakeNightVision) {
-                adjustFakeNightVisionScale(config.fakeNightVision.transition);
-                wasFakeNightVision = false;
-            }
-        }
-    }
-
-    private static int fnvTransitionTime;
-    private static float targetFnvScale;
-    private static int elapsedFnvTransitionTime;
-    private static boolean execFnvTransition;
-
-    public static void adjustFakeNightVisionScale(boolean transition) {
+    public static void adjust(final ValidatedFloat validatedFloat, final SharedNumericState<Float> state, final ValidatedBoolean enabled, final boolean transition, final int transitionTime) {
         if (transition) {
-            if (!execFnvTransition) {
-                if (!config.fakeNightVision.enabled.get()) {
-                    targetFnvScale = UnitValueConverter.fromPercent(fnvScale().get());
-                    fnvScale().validateAndSet(UnitValueConverter.fromPercent(configInternal.fakeNightVision.minScale));
-                    config.fakeNightVision.enabled.validateAndSet(true);
+            if (!state.execTransition) {
+                if (!enabled.get()) {
+                    state.targetVal = state.max;
+                    if (validatedFloat.get().equals(state.min)) {
+                        validatedFloat.validateAndSet(state.min);
+                    }
+                    enabled.validateAndSet(true);
                 } else {
-                    targetFnvScale = UnitValueConverter.fromPercent(configInternal.fakeNightVision.minScale);
-                    configInternal.fakeNightVision.prev.validateAndSet(fnvScale().get());
+                    state.targetVal = computeTargetVal(validatedFloat.get(), state.max, state.min);
                 }
-
-                fnvTransitionTime = config.fakeNightVision.transitionTime;
-                elapsedFnvTransitionTime = 0;
-                execFnvTransition = true;
+                state.transitionTime = transitionTime;
+                state.elapsedTransitionTime = 0;
+                state.execTransition = true;
             } else {
-                targetFnvScale = targetFnvScale != UnitValueConverter.fromPercent(configInternal.fakeNightVision.minScale) ? UnitValueConverter.fromPercent(configInternal.fakeNightVision.minScale) : UnitValueConverter.fromPercent(configInternal.fakeNightVision.prev.get());
-                fnvTransitionTime = elapsedFnvTransitionTime;
-                elapsedFnvTransitionTime = 0;
+                state.targetVal = computeTargetVal(state.targetVal, state.max, state.min);
+                state.transitionTime = state.elapsedTransitionTime;
+                state.elapsedTransitionTime = 0;
             }
         } else {
-            config.fakeNightVision.enabled.validateAndSet(!config.fakeNightVision.enabled.get());
-            config.save();
+            enabled.validateAndSet(!enabled.get());
+            validatedFloat.validateAndSet(resolveValFromState(enabled.get(), state.max, state.min));
+            configGeneral.save();
         }
     }
 
-    public static void handleFakeNightVisionScaleTransition() {
-        if (config.fakeNightVision.transition && execFnvTransition) {
-            if (fnvTransitionTime <= 0) {
-                execFnvTransition = false;
-                if (targetFnvScale == UnitValueConverter.fromPercent(configInternal.fakeNightVision.minScale)) {
-                    fnvScale().validateAndSet(configInternal.fakeNightVision.prev.get());
+    public static void handleTransition(final ValidatedFloat validatedFloat, final SharedNumericState<Float> state, final ValidatedBoolean enabled, final boolean transition) {
+        if (transition && state.execTransition) {
+            if (state.transitionTime <= 0) {
+                state.execTransition = false;
+                if (state.targetVal.equals(state.min)) {
+                    enabled.validateAndSet(false);
                 }
-                config.save();
+                configGeneral.save();
                 configInternal.save();
             } else {
-                fnvScale().validateAndSet(UnitValueConverter.toPercent(UnitValueConverter.fromPercent(fnvScale().get()) + ((targetFnvScale - UnitValueConverter.fromPercent(fnvScale().get())) / fnvTransitionTime)));
-                fnvTransitionTime--;
-                elapsedFnvTransitionTime++;
+                validatedFloat.validateAndSet(lerp(validatedFloat.get(), state.targetVal, state.transitionTime));
+                state.transitionTime--;
+                state.elapsedTransitionTime++;
             }
         }
     }
 
-    private static final RandomSource random = RandomSource.create();
-
-    private static int rmbTransitionTime;
-    private static int rmbTransitionDuration;
-    private static boolean execRmbTransition;
-    private static boolean targetRmbState;
-
-    public static void adjustRemoveBlindness(boolean transition) {
-        if (transition) {
-            if (!execRmbTransition) {
-                targetRmbState = !config.removeBlindness.enabled.get();
-                rmbTransitionTime = 0;
-                rmbTransitionDuration = config.removeBlindness.transitionTime + random.nextInt(10);
-                execRmbTransition = true;
-            }
-        } else {
-            config.removeBlindness.enabled.validateAndSet(!config.removeBlindness.enabled.get());
-            config.save();
-        }
+    static double lerp(final double current, final double val, final int transitionTime) {
+        return current + ((val - current) / transitionTime);
     }
 
-    public static void handleRemoveBlindnessTransition() {
-        if (config.removeBlindness.transition && execRmbTransition) {
-            rmbTransitionTime++;
-
-            if (random.nextFloat() < (1.0F - ((float) rmbTransitionTime / rmbTransitionDuration))) {
-                config.removeBlindness.enabled.validateAndSet(!config.removeBlindness.enabled.get());
-            }
-
-            if (rmbTransitionTime >= rmbTransitionDuration) {
-                config.removeBlindness.enabled.validateAndSet(targetRmbState);
-                execRmbTransition = false;
-                config.save();
-            }
-        }
+    static float lerp(final float current, final float val, final int transitionTime) {
+        return current + ((val - current) / transitionTime);
     }
 
-    private static int rmdTransitionTime;
-    private static int rmdTransitionDuration;
-    private static boolean execRmdTransition;
-    private static boolean targetRmdState;
-
-    public static void adjustRemoveDarkness(boolean transition) {
-        if (transition) {
-            if (!execRmdTransition) {
-                targetRmdState = !config.removeDarkness.enabled.get();
-                rmdTransitionTime = 0;
-                rmdTransitionDuration = config.removeDarkness.transitionTime + random.nextInt(10);
-                execRmdTransition = true;
-            }
-        } else {
-            config.removeDarkness.enabled.validateAndSet(!config.removeDarkness.enabled.get());
-            config.save();
-        }
+    static double computeTargetVal(final double current, final double val, final double prev) {
+        return current != val ? val : prev;
     }
 
-    public static void handleRemoveDarknessTransition() {
-        if (config.removeDarkness.transition && execRmdTransition) {
-            rmdTransitionTime++;
+    static float computeTargetVal(final float current, final float val, final float prev) {
+        return current != val ? val : prev;
+    }
 
-            if (random.nextFloat() < (1.0F - ((float) rmdTransitionTime / rmdTransitionDuration))) {
-                config.removeDarkness.enabled.validateAndSet(!config.removeDarkness.enabled.get());
-            }
-
-            if (rmdTransitionTime >= rmdTransitionDuration) {
-                config.removeDarkness.enabled.validateAndSet(targetRmdState);
-                execRmdTransition = false;
-                config.save();
-            }
-        }
+    static float resolveValFromState(final boolean enabled, final float max, final float min) {
+        return enabled ? max : min;
     }
 }

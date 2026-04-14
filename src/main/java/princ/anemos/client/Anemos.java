@@ -6,8 +6,14 @@ import net.fabricmc.api.Environment;
 
 @Environment(EnvType.CLIENT)
 public class Anemos implements ClientModInitializer {
+	public KeyMappingImpl keyMapping;
+
+	public Anemos() {
+		this.keyMapping = new KeyMappingImpl();
+	}
+
 	@Override
 	public void onInitializeClient() {
-		KeyMappingImpl.registerMappings();
+		this.keyMapping.registerAll();
 	}
 }

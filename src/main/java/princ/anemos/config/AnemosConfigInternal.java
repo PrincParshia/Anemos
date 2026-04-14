@@ -1,34 +1,42 @@
 package princ.anemos.config;
 
-import me.fzzyhmstrs.fzzy_config.api.SaveType;
+import me.fzzyhmstrs.fzzy_config.annotations.Translation;
 import me.fzzyhmstrs.fzzy_config.config.Config;
 import me.fzzyhmstrs.fzzy_config.config.ConfigSection;
 import me.fzzyhmstrs.fzzy_config.validation.number.ValidatedDouble;
 import me.fzzyhmstrs.fzzy_config.validation.number.ValidatedFloat;
-import net.minecraft.resources.ResourceLocation;
 
 import static princ.anemos.AnemosConstants.*;
+import static princ.anemos.util.UnitValueConverter.*;
 
+@Translation(prefix = CONFIG_TRANSLATION_ID + ".internal")
 public class AnemosConfigInternal extends Config {
     public AnemosConfigInternal() {
-        super(ResourceLocation.fromNamespaceAndPath(NAMESPACE, "internal"));
+        super(withDefaultNamespace("internal"));
     }
 
-    public GammaConfigInternal gamma = new GammaConfigInternal();
-    public FakeNightVisionConfigInternal fakeNightVision = new FakeNightVisionConfigInternal();
+    public Gamma gamma = new Gamma();
+    public FakeNightVision fakeNightVision = new FakeNightVision();
+    public RemoveBlindness removeBlindness = new RemoveBlindness();
+    public RemoveDarkness removeDarkness = new RemoveDarkness();
 
-    public static class GammaConfigInternal extends ConfigSection {
+    public static class Gamma extends ConfigSection {
         public double min = 0.0, max = 15.0;
-        public ValidatedDouble prev = new ValidatedDouble(config.gamma.defaultValue.get(), config.gamma.toggleValue.get(), 0.0);
+        public ValidatedDouble prev = new ValidatedDouble(fromPercent(configGeneral.gamma.def.get()), this.max, this.min);
     }
 
-    public static class FakeNightVisionConfigInternal extends ConfigSection {
+    public static class FakeNightVision extends ConfigSection {
         public float minScale = 0.0F, maxScale = 1.0F;
-        public ValidatedFloat prev = new ValidatedFloat(0.0F, 100.0F, 0.0F);
+        public ValidatedFloat scale = new ValidatedFloat(this.maxScale, this.maxScale, this.minScale);
     }
 
-    @Override
-    public SaveType saveType() {
-        return SaveType.SEPARATE;
+    public static class RemoveBlindness extends ConfigSection {
+        public float minDist = 5.0F, maxDist = 256.0F;
+        public ValidatedFloat dist = new ValidatedFloat(this.maxDist, Float.MAX_VALUE, this.minDist);
+    }
+
+    public static class RemoveDarkness extends ConfigSection {
+        public float minDist = 15.0F, maxDist = 256.0F;
+        public ValidatedFloat dist = new ValidatedFloat(this.maxDist, Float.MAX_VALUE, this.minDist);
     }
 }
