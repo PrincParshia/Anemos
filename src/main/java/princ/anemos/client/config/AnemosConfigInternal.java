@@ -1,4 +1,4 @@
-package princ.anemos.config;
+package princ.anemos.client.config;
 
 import me.fzzyhmstrs.fzzy_config.annotations.Translation;
 import me.fzzyhmstrs.fzzy_config.config.Config;
@@ -6,8 +6,8 @@ import me.fzzyhmstrs.fzzy_config.config.ConfigSection;
 import me.fzzyhmstrs.fzzy_config.validation.number.ValidatedDouble;
 import me.fzzyhmstrs.fzzy_config.validation.number.ValidatedFloat;
 
-import static princ.anemos.AnemosConstants.*;
-import static princ.anemos.util.UnitValueConverter.*;
+import static princ.anemos.client.AnemosConstants.*;
+import static princ.anemos.client.util.UnitValueConverter.fromPercent;
 
 @Translation(prefix = CONFIG_TRANSLATION_ID + ".internal")
 public class AnemosConfigInternal extends Config {

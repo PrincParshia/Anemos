@@ -1,14 +1,10 @@
 plugins {
-	id("net.fabricmc.fabric-loom")
+	id("net.fabricmc.fabric-loom-remap")
 	`maven-publish`
 }
 
 version = providers.gradleProperty("mod_version").get()
 group = providers.gradleProperty("maven_group").get()
-
-base {
-	archivesName = providers.gradleProperty("archives_base_name")
-}
 
 loom {
 	val aw = file("src/main/resources/${base.archivesName.get()}.accesswidener")
@@ -38,13 +34,13 @@ repositories {
 dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft("com.mojang:minecraft:${providers.gradleProperty("minecraft_version").get()}")
-	
-	implementation("net.fabricmc:fabric-loader:${providers.gradleProperty("loader_version").get()}")
+	mappings(loom.officialMojangMappings())
+	modImplementation("net.fabricmc:fabric-loader:${providers.gradleProperty("loader_version").get()}")
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
-	implementation("net.fabricmc.fabric-api:fabric-api:${providers.gradleProperty("fabric_api_version").get()}")
-	implementation("com.terraformersmc:modmenu:${providers.gradleProperty("modmenu_version").get()}")
-	implementation("me.fzzyhmstrs:fzzy_config:${providers.gradleProperty("fzzy_config_version").get()}")
+	modImplementation("net.fabricmc.fabric-api:fabric-api:${providers.gradleProperty("fabric_api_version").get()}")
+	modImplementation("com.terraformersmc:modmenu:${providers.gradleProperty("modmenu_version").get()}")
+	modImplementation("me.fzzyhmstrs:fzzy_config:${providers.gradleProperty("fzzy_config_version").get()}")
 }
 
 tasks.processResources {
@@ -56,7 +52,7 @@ tasks.processResources {
 }
 
 tasks.withType<JavaCompile>().configureEach {
-	options.release = 25
+	options.release = 21
 }
 
 java {
@@ -65,15 +61,15 @@ java {
 	// If you remove this line, sources will not be generated.
 	withSourcesJar()
 
-	sourceCompatibility = JavaVersion.VERSION_25
-	targetCompatibility = JavaVersion.VERSION_25
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
 }
 
 tasks.jar {
-	inputs.property("archivesName", base.archivesName)
+	inputs.property("projectName", project.name)
 
 	from("LICENSE") {
-		rename { "${it}_${base.archivesName.get()}" }
+		rename { "${it}_${project.name}" }
 	}
 }
 
@@ -81,7 +77,6 @@ tasks.jar {
 publishing {
 	publications {
 		register<MavenPublication>("mavenJava") {
-			artifactId = base.archivesName.get()
 			from(components["java"])
 		}
 	}

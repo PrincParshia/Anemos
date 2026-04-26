@@ -1,19 +1,19 @@
 {
-    "required": true,
-    "package": "princ.anemos.mixin",
-    "compatibilityLevel": "JAVA_25",
-    "client": [
-        "client.OptionsMixin",
-        "client.renderer.GameRendererMixin",
-        "client.renderer.fog.FogRendererMixin",
-        "client.renderer.fog.environment.BlindnessFogEnvironmentMixin",
-        "client.renderer.fog.environment.DarknessFogEnvironmentMixin",
-        "client.world.entity.LivingEntityMixin"
-    ],
-    "injectors": {
-        "defaultRequire": 1
-    },
-    "overwrites": {
-        "requireAnnotations": true
+	"required": true,
+	"package": "princ.anemos.client.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"client": [
+		"OptionsMixin",
+		"renderer.GameRendererMixin",
+		"renderer.fog.FogRendererMixin",
+		"renderer.fog.environment.BlindnessFogEnvironmentMixin",
+		"renderer.fog.environment.DarknessFogEnvironmentMixin",
+		"world.entity.LivingEntityMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"overwrites": {
+		"requireAnnotations": true
 	}
 }

@@ -1,5 +1,4 @@
-package princ.anemos.state;
-
+package princ.anemos.client.state;
 
 public abstract class SharedNumericState<T extends Number> {
     public T min;

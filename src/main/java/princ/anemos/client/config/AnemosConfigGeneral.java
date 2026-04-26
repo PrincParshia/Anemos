@@ -1,4 +1,4 @@
-package princ.anemos.config;
+package princ.anemos.client.config;
 
 import me.fzzyhmstrs.fzzy_config.annotations.Translation;
 import me.fzzyhmstrs.fzzy_config.config.Config;
@@ -6,7 +6,8 @@ import me.fzzyhmstrs.fzzy_config.config.ConfigSection;
 import me.fzzyhmstrs.fzzy_config.validation.misc.ValidatedBoolean;
 import me.fzzyhmstrs.fzzy_config.validation.number.ValidatedInt;
 
-import static princ.anemos.AnemosConstants.*;
+import static princ.anemos.client.AnemosConstants.CONFIG_TRANSLATION_ID;
+import static princ.anemos.client.AnemosConstants.withDefaultNamespace;
 
 @Translation(prefix = CONFIG_TRANSLATION_ID)
 public class AnemosConfigGeneral extends Config {

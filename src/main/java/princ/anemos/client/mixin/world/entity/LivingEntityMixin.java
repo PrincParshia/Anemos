@@ -1,4 +1,4 @@
-package princ.anemos.mixin.client.world.entity;
+package princ.anemos.client.mixin.world.entity;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.fabricmc.api.EnvType;
@@ -10,13 +10,13 @@ import net.minecraft.world.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-import static princ.anemos.AnemosConstants.*;
+import static princ.anemos.client.AnemosConstants.configGeneral;
 
 @Mixin(LivingEntity.class)
 @Environment(EnvType.CLIENT)
 public class LivingEntityMixin {
-    @ModifyReturnValue(method = "hasEffect", at = @At(value = "RETURN"))
-    boolean hasEffect(final boolean original, final Holder<MobEffect> effect) {
+    @ModifyReturnValue(method = "hasEffect", at = @At("RETURN"))
+    boolean hasEffect(boolean original, Holder<MobEffect> effect) {
         if (effect == MobEffects.NIGHT_VISION && configGeneral.fakeNightVision.enabled.get()) {
             return true;
         }

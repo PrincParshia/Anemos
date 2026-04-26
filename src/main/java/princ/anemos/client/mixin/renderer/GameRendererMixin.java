@@ -1,10 +1,8 @@
-package princ.anemos.mixin.client.renderer;
+package princ.anemos.client.mixin.renderer;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.core.Holder;
 import net.minecraft.world.effect.MobEffect;
@@ -14,10 +12,10 @@ import net.minecraft.world.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-import static princ.anemos.AnemosConstants.*;
+import static princ.anemos.client.AnemosConstants.configGeneral;
+import static princ.anemos.client.AnemosConstants.nightVisionScale;
 
 @Mixin(GameRenderer.class)
-@Environment(EnvType.CLIENT)
 public class GameRendererMixin {
     @WrapOperation(
             method = "getNightVisionScale",

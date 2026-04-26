@@ -1,4 +1,4 @@
-package princ.anemos;
+package princ.anemos.client;
 
 import me.fzzyhmstrs.fzzy_config.api.ConfigApiJava;
 import me.fzzyhmstrs.fzzy_config.api.RegisterType;
@@ -11,11 +11,11 @@ import net.minecraft.client.OptionInstance;
 import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import princ.anemos.config.AnemosConfigGeneral;
-import princ.anemos.config.AnemosConfigInternal;
-import princ.anemos.state.*;
+import princ.anemos.client.config.AnemosConfigGeneral;
+import princ.anemos.client.config.AnemosConfigInternal;
+import princ.anemos.client.state.*;
 
-import static princ.anemos.util.UnitValueConverter.*;
+import static princ.anemos.client.util.UnitValueConverter.fromPercent;
 
 public class AnemosConstants {
     public static final String NAMESPACE = "anemos";

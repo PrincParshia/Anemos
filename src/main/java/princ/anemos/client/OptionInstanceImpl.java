@@ -7,7 +7,7 @@ import net.minecraft.client.OptionInstance;
 
 import java.util.Optional;
 
-import static princ.anemos.AnemosConstants.*;
+import static princ.anemos.client.AnemosConstants.configInternal;
 
 @Environment(EnvType.CLIENT)
 public class OptionInstanceImpl {
