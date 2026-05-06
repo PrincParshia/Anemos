@@ -1,7 +1,0 @@
-package princ.anemos.util;
-
-public class UnitValueConverter {
-    public static float fromPercent(int i) {
-        return (float) (i / 100);
-    }
-}

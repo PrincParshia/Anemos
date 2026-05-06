@@ -1,0 +1,12 @@
+{
+    "required": true,
+    "minVersion": "0.8",
+    "package": "princ.anemos.client.mixin",
+    "compatibilityLevel": "JAVA_25",
+    "client": [
+        "renderer.fog.ClientHooksMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}

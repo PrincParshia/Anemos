@@ -1,0 +1,34 @@
+{
+    "schemaVersion": 1,
+    "id": "${mod_id}",
+    "version": "${version}",
+    "name": "${mod_name}",
+    "description": "${description}",
+    "authors": [
+        "${mod_author}"
+    ],
+    "contact": {
+        "sources": "https://github.com/PrincParshia/Anemos"
+    },
+    "license": "${license}",
+    "icon": "${mod_id}.icon.png",
+    "environment": "client",
+    "entrypoints": {
+        "client": [
+            "princ.anemos.client.AnemosFabricClientModInitializer"
+        ]
+    },
+    "mixins": [
+        "${mod_id}.mixins.json",
+        "${mod_id}.fabric.mixins.json"
+    ],
+    "accessWidener": "anemos.accesswidener",
+    "depends": {
+        "fabricloader": ">=${fabric_loader_version}",
+        "fabric-api": "*",
+        "minecraft": "~${minecraft_version}",
+        "fzzy_config": "*",
+        "java": ">=${java_version}"
+    }
+}
+  

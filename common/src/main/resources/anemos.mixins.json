@@ -1,0 +1,18 @@
+{
+    "required": true,
+    "minVersion": "0.8",
+    "package": "princ.anemos.client.mixin",
+    "compatibilityLevel": "JAVA_25",
+    "client": [
+        "OptionsMixin",
+        "renderer.GameRendererMixin",
+        "renderer.fog.FogRendererMixin",
+        "renderer.fog.environment.BlindnessFogEnvironmentMixin",
+        "renderer.fog.environment.DarknessFogEnvironmentMixin",
+        "world.entity.LivingEntityMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}
+
