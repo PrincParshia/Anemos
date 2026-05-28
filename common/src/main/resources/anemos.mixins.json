@@ -7,6 +7,7 @@
         "OptionsMixin",
         "renderer.GameRendererMixin",
         "renderer.fog.FogRendererMixin",
+        "renderer.fog.environment.AtmosphericFogEnvironmentMixin",
         "renderer.fog.environment.BlindnessFogEnvironmentMixin",
         "renderer.fog.environment.DarknessFogEnvironmentMixin",
         "world.entity.LivingEntityMixin"

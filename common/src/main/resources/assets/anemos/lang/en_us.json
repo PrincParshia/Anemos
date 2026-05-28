@@ -41,5 +41,7 @@
     "config.anemos.fog.lava": "Lava",
     "config.anemos.fog.water": "Water",
     "config.anemos.fog.powderSnow": "Powder Snow",
-    "config.anemos.fog.atmospheric": "Atmospheric"
+    "config.anemos.fog.atmosphericGroup": "Atmospheric",
+    "config.anemos.fog.atmospheric": "Enabled",
+    "config.anemos.fog.netherHorizon": "Nether Horizon"
 }

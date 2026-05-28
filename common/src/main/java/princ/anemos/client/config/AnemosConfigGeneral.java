@@ -2,6 +2,7 @@ package princ.anemos.client.config;
 
 import me.fzzyhmstrs.fzzy_config.annotations.Translation;
 import me.fzzyhmstrs.fzzy_config.config.Config;
+import me.fzzyhmstrs.fzzy_config.config.ConfigGroup;
 import me.fzzyhmstrs.fzzy_config.config.ConfigSection;
 import me.fzzyhmstrs.fzzy_config.validation.misc.ValidatedBoolean;
 import me.fzzyhmstrs.fzzy_config.validation.number.ValidatedInt;
@@ -56,6 +57,9 @@ public class AnemosConfigGeneral extends Config {
         public boolean lava = true;
         public boolean water = true;
         public boolean powderSnow = true;
+        public ConfigGroup atmosphericGroup = new ConfigGroup();
         public boolean atmospheric = true;
+        @ConfigGroup.Pop
+        public boolean netherHorizon = true;
     }
 }

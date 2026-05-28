@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import static princ.anemos.client.Constants.configGeneral;
 import static princ.anemos.client.Constants.nightVisionScale;
 
-@Mixin(GameRenderer.class)
+@Mixin(value = GameRenderer.class, priority = 2000)
 public class GameRendererMixin {
 
     @WrapOperation(
