@@ -29,25 +29,19 @@ public class KeyMappingImpl {
 
     public static void listenClicks(ClientTickEvent.Post event) {
         if (gammaKey.get().consumeClick()) {
-            adjustGamma(GAMMA_STATE, configGeneral.gamma.val, configInternal.gamma.prev, configGeneral.gamma.transition, configGeneral.gamma.transitionTime);
+            toggleGamma(gammaState(), gamma().peak, gammaPrevVal(), gamma().transition, gamma().transitionTime);
         }
-        handleGammaTransition(GAMMA_STATE, configGeneral.gamma.transition);
 
         if (fakeNightVisionKey.get().consumeClick()) {
-            adjust(nightVisionScale(), FAKE_NIGHT_VISION_SCALE_STATE, configGeneral.fakeNightVision.enabled, configGeneral.fakeNightVision.transition, configGeneral.fakeNightVision.transitionTime);
+            toggle(nightVisionScale(), nightVisionScaleState(), fakeNightVision().enabled, fakeNightVision().transition, fakeNightVision().transitionTime);
         }
-        handleTransition(nightVisionScale(), FAKE_NIGHT_VISION_SCALE_STATE, configGeneral.fakeNightVision.enabled, configGeneral.fakeNightVision.transition);
 
         if (removeBlindnessKey.get().consumeClick()) {
-            BLINDNESS_DISTANCE_STATE.resolveValues();
-            adjust(blindnessDistance(), BLINDNESS_DISTANCE_STATE, configGeneral.removeBlindness.enabled, configGeneral.removeBlindness.transition, configGeneral.removeBlindness.transitionTime);
+            toggle(blindnessDistance(), blindnessDistanceState(), removeBlindness().enabled, removeBlindness().transition, removeBlindness().transitionTime);
         }
-        handleTransition(blindnessDistance(), BLINDNESS_DISTANCE_STATE, configGeneral.removeBlindness.enabled, configGeneral.removeBlindness.transition);
 
         if (removeDarknessKey.get().consumeClick()) {
-            DARKNESS_DISTANCE_STATE.resolveValues();
-            adjust(darknessDistance(), DARKNESS_DISTANCE_STATE, configGeneral.removeDarkness.enabled, configGeneral.removeDarkness.transition, configGeneral.removeDarkness.transitionTime);
+            toggle(darknessDistance(), darknessDistanceState(), removeDarkness().enabled, removeDarkness().transition, removeDarkness().transitionTime);
         }
-        handleTransition(darknessDistance(), DARKNESS_DISTANCE_STATE, configGeneral.removeDarkness.enabled, configGeneral.removeDarkness.transition);
     }
 }

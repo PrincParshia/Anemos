@@ -15,7 +15,7 @@
     "environment": "client",
     "entrypoints": {
         "client": [
-            "princ.anemos.client.AnemosFabricClientModInitializer"
+            "princ.anemos.client.FabricCMI"
         ]
     },
     "mixins": [

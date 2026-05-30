@@ -2,7 +2,7 @@ package princ.anemos.client.util;
 
 public class UnitValueConverter {
 
-    public static float fromPercent(int i) {
-        return (float) (i / 100);
+    public static double fromPercent(int i) {
+        return (double) i / 100;
     }
 }

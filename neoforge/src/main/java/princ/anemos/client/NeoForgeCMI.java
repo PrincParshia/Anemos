@@ -8,11 +8,11 @@ import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.common.NeoForge;
 
 @Mod(value = Constants.NAMESPACE, dist = Dist.CLIENT)
-public class AnemosNeoForgeClientModInitializer {
+public class NeoForgeCMI {
 
-    public AnemosNeoForgeClientModInitializer(IEventBus eventBus) {
+    public NeoForgeCMI(IEventBus eventBus) {
         Anemos.init();
-        NeoForge.EVENT_BUS.addListener(AnemosNeoForgeClientModInitializer::onClientTick);
+        NeoForge.EVENT_BUS.addListener(NeoForgeCMI::onClientTick);
     }
 
     @SubscribeEvent

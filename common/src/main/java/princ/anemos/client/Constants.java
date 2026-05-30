@@ -9,6 +9,7 @@ import me.fzzyhmstrs.fzzy_config.validation.number.ValidatedInt;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.OptionInstance;
 import net.minecraft.resources.Identifier;
+import net.minecraft.util.Mth;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import princ.anemos.client.config.AnemosConfigGeneral;
@@ -24,10 +25,10 @@ public class Constants {
 	public static final String CONFIG_TRANSLATION_ID = "config." + NAMESPACE;
 	public static final AnemosConfigGeneral configGeneral = ConfigApiJava.registerAndLoadConfig(AnemosConfigGeneral::new, RegisterType.CLIENT);
 	public static final AnemosConfigInternal configInternal = ConfigApiJava.registerAndLoadNoGuiConfig(AnemosConfigInternal::new, RegisterType.CLIENT);
-	public static final GammaState GAMMA_STATE = new GammaState();
-	public static final NightVisionScaleState FAKE_NIGHT_VISION_SCALE_STATE = new NightVisionScaleState();
-	public static final BlindnessDistanceState BLINDNESS_DISTANCE_STATE = new BlindnessDistanceState();
-	public static final DarknessDistanceState DARKNESS_DISTANCE_STATE = new DarknessDistanceState();
+	private static final GammaState GAMMA_STATE = new GammaState();
+	private static final NightVisionScaleState FAKE_NIGHT_VISION_SCALE_STATE = new NightVisionScaleState();
+	private static final BlindnessDistanceState BLINDNESS_DISTANCE_STATE = new BlindnessDistanceState();
+	private static final DarknessDistanceState DARKNESS_DISTANCE_STATE = new DarknessDistanceState();
 
 	public static Minecraft minecraft() {
 		return Minecraft.getInstance();
@@ -41,119 +42,152 @@ public class Constants {
 		return "key." + NAMESPACE + "." + string;
 	}
 
-	public static OptionInstance<Double> gamma() {
+	public static AnemosConfigGeneral.Gamma gamma() {
+		return configGeneral.gamma;
+	}
+
+	public static OptionInstance<Double> gammaVal() {
 		return minecraft().options.gamma();
+	}
+
+	public static ValidatedDouble gammaPrevVal() {
+		return configInternal.gamma.prev;
+	}
+
+	public static GammaState gammaState() {
+		return GAMMA_STATE;
+	}
+
+	public static AnemosConfigGeneral.FakeNightVision fakeNightVision() {
+		return configGeneral.fakeNightVision;
 	}
 
 	public static ValidatedFloat nightVisionScale() {
 		return configInternal.fakeNightVision.scale;
 	}
 
+	public static NightVisionScaleState nightVisionScaleState() {
+		return FAKE_NIGHT_VISION_SCALE_STATE;
+	}
+
+	public static AnemosConfigGeneral.RemoveBlindness removeBlindness() {
+		return configGeneral.removeBlindness;
+	}
+
 	public static ValidatedFloat blindnessDistance() {
 		return configInternal.removeBlindness.dist;
+	}
+
+	public static BlindnessDistanceState blindnessDistanceState() {
+		return BLINDNESS_DISTANCE_STATE;
+	}
+
+	public static AnemosConfigGeneral.RemoveDarkness removeDarkness() {
+		return configGeneral.removeDarkness;
 	}
 
 	public static ValidatedFloat darknessDistance() {
 		return configInternal.removeDarkness.dist;
 	}
 
-	public static void adjustGamma(GammaState state, ValidatedInt val, ValidatedDouble prev, boolean transition, int transitionTime) {
+	public static DarknessDistanceState darknessDistanceState() {
+		return DARKNESS_DISTANCE_STATE;
+	}
+
+	public static void toggleGamma(GammaState state, ValidatedInt peak, ValidatedDouble prev, boolean transition, int transitionDuration) {
 		if (transition) {
+			state.resolveValues();
 			if (!state.execTransition) {
-				state.targetVal = computeTargetVal(gamma().get(), fromPercent(val.get()), prev.get());
-				if (state.targetVal == fromPercent(val.get())) {
-					prev.validateAndSet(gamma().get());
+				state.current = gammaVal().get();
+				state.start = state.current;
+				state.end = !gammaVal().get().equals(fromPercent(peak.get())) ? fromPercent(peak.get()) : prev.get();
+				if (state.end == fromPercent(peak.get())) {
+					prev.validateAndSet(gammaVal().get());
 				}
-				state.transitionTime = transitionTime;
-				state.elapsedTransitionTime = 0;
+				state.progress = 0.0;
+				state.transitionDuration = (double) transitionDuration;
 				state.execTransition = true;
 			} else {
-				state.targetVal = computeTargetVal(state.targetVal, fromPercent(val.get()), prev.get());
-				state.transitionTime = state.elapsedTransitionTime;
-				state.elapsedTransitionTime = 0;
+				state.start = state.current;
+				state.end = !state.end.equals(fromPercent(peak.get())) ? fromPercent(peak.get()) : prev.get();
+				double progress = (state.current - prev.get()) / (fromPercent(peak.get()) - prev.get());
+				state.transitionDuration = transitionDuration * (state.end.equals(fromPercent(peak.get())) ? 1.0 - progress : progress);
+				state.progress = 0.0;
 			}
 		} else {
-			double targetVal = computeTargetVal(gamma().get(), fromPercent(val.get()), prev.get());
-			if (targetVal == fromPercent(val.get())) prev.validateAndSet(gamma().get());
-			gamma().set(targetVal);
+			double endVal = !gammaVal().get().equals(fromPercent(peak.get())) ? fromPercent(peak.get()) : prev.get();
+			if (endVal == fromPercent(peak.get())) prev.validateAndSet(gammaVal().get());
+			gammaVal().set(endVal);
 			configInternal.save();
 		}
 	}
 
-	public static void handleGammaTransition(GammaState state, boolean transition) {
+	public static double calcGamma(GammaState state, boolean transition, float deltaTicks) {
 		if (transition && state.execTransition) {
-			if (state.transitionTime <= 0) {
+			state.progress += deltaTicks / state.transitionDuration;
+
+			if (state.progress >= 1.0) {
 				state.execTransition = false;
+				state.current = state.end;
+				gammaVal().set(state.end);
 				configInternal.save();
 			} else {
-				gamma().set(lerp(gamma().get(), state.targetVal, state.transitionTime));
-				state.transitionTime--;
-				state.elapsedTransitionTime++;
+				return state.current = Mth.lerp(state.progress, state.start, state.end);
 			}
 		}
+		return gammaVal().get();
 	}
 
-	public static void adjust(ValidatedFloat validatedFloat, SharedNumericState<Float> state, ValidatedBoolean enabled, boolean transition, int transitionTime) {
+	public static void toggle(ValidatedFloat val, SharedNumericState<Float> state, ValidatedBoolean enabled, boolean transition, int transitionDuration) {
 		if (transition) {
+			state.resolveValues();
 			if (!state.execTransition) {
 				if (!enabled.get()) {
-					state.targetVal = state.max;
-					if (validatedFloat.get().equals(state.min)) {
-						validatedFloat.validateAndSet(state.min);
+					state.end = state.max;
+					if (!val.get().equals(state.min)) {
+						val.validateAndSet(state.min);
 					}
 					enabled.validateAndSet(true);
 				} else {
-					state.targetVal = computeTargetVal(validatedFloat.get(), state.max, state.min);
+					state.end = !val.get().equals(state.max) ? state.max : state.min;
 				}
-				state.transitionTime = transitionTime;
-				state.elapsedTransitionTime = 0;
+				state.current = val.get();
+				state.start = state.current;
+				state.progress = 0.0F;
+				state.transitionDuration = (float) transitionDuration;
 				state.execTransition = true;
 			} else {
-				state.targetVal = computeTargetVal(state.targetVal, state.max, state.min);
-				state.transitionTime = state.elapsedTransitionTime;
-				state.elapsedTransitionTime = 0;
+				state.start = state.current;
+				state.end = !state.end.equals(state.max) ? state.max : state.min;
+				float progress = (state.current - state.min) / (state.max - state.min);
+				state.transitionDuration = transitionDuration * (state.end.equals(state.max) ? 1.0F - progress : progress);
+				state.progress = 0.0F;
 			}
 		} else {
 			enabled.validateAndSet(!enabled.get());
-			validatedFloat.validateAndSet(resolveValFromState(enabled.get(), state.max, state.min));
+			val.validateAndSet(enabled.get() ? state.max : state.min);
 			configGeneral.save();
+			configInternal.save();
 		}
 	}
 
-	public static void handleTransition(ValidatedFloat validatedFloat, SharedNumericState<Float> state, ValidatedBoolean enabled, boolean transition) {
+	public static float calc(ValidatedFloat val, SharedNumericState<Float> state, ValidatedBoolean enabled, boolean transition, float deltaTicks) {
 		if (transition && state.execTransition) {
-			if (state.transitionTime <= 0) {
+			state.progress += deltaTicks / state.transitionDuration;
+
+			if (state.progress >= 1.0F) {
 				state.execTransition = false;
-				if (state.targetVal.equals(state.min)) {
+				state.current = state.end;
+				val.validateAndSet(state.end);
+				if (state.end.equals(state.min)) {
 					enabled.validateAndSet(false);
 				}
 				configGeneral.save();
 				configInternal.save();
 			} else {
-				validatedFloat.validateAndSet(lerp(validatedFloat.get(), state.targetVal, state.transitionTime));
-				state.transitionTime--;
-				state.elapsedTransitionTime++;
+				return state.current = Mth.lerp(state.progress, state.start, state.end);
 			}
 		}
-	}
-
-	static double lerp(double current, double val, int transitionTime) {
-		return current + ((val - current) / transitionTime);
-	}
-
-	static float lerp(float current, float val, int transitionTime) {
-		return current + ((val - current) / transitionTime);
-	}
-
-	static double computeTargetVal(double current, double val, double prev) {
-		return current != val ? val : prev;
-	}
-
-	static float computeTargetVal(float current, float val, float prev) {
-		return current != val ? val : prev;
-	}
-
-	static float resolveValFromState(boolean enabled, float max, float min) {
-		return enabled ? max : min;
+		return val.get();
 	}
 }

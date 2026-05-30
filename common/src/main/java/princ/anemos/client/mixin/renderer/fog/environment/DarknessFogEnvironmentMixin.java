@@ -1,27 +1,24 @@
 package princ.anemos.client.mixin.renderer.fog.environment;
 
-import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import net.minecraft.client.Camera;
+import net.minecraft.client.DeltaTracker;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.renderer.fog.FogData;
 import net.minecraft.client.renderer.fog.environment.DarknessFogEnvironment;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
-import static princ.anemos.client.Constants.configGeneral;
-import static princ.anemos.client.Constants.darknessDistance;
+import static princ.anemos.client.Constants.*;
 
 @Mixin(DarknessFogEnvironment.class)
 public class DarknessFogEnvironmentMixin {
 
-    @ModifyExpressionValue(
-            method = "setupFog",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/util/Mth;lerp(FFF)F"
-            )
-    )
-    float modifyDistance(float original) {
-        if (configGeneral.removeDarkness.enabled.get()) {
-            return darknessDistance().get();
+    @ModifyVariable(method = "setupFog", at = @At("STORE"), name = "distance")
+    float modifyDistance(float distance, FogData fog, Camera camera, ClientLevel level, float renderDistance, DeltaTracker deltaTracker) {
+        if (removeDarkness().enabled.get()) {
+            return calc(darknessDistance(), darknessDistanceState(), removeDarkness().enabled, removeDarkness().transition, deltaTracker.getGameTimeDeltaTicks());
         }
-        return original;
+        return distance;
     }
 }

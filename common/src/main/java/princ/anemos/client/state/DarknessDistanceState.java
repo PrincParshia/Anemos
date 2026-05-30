@@ -8,7 +8,7 @@ public class DarknessDistanceState extends SharedNumericState<Float> {
     public DarknessDistanceState() {
         float min = configInternal.removeDarkness.minDist;
         float max = configInternal.removeDarkness.maxDist;
-        super(min, max, 0.0F, 0, 0, false);
+        super(min, max, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, false);
     }
 
     @Override

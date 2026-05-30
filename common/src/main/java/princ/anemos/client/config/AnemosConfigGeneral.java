@@ -25,7 +25,7 @@ public class AnemosConfigGeneral extends Config {
     @Translation(prefix = CONFIG_TRANSLATION_ID + ".gamma")
     public static class Gamma extends ConfigSection {
         public ValidatedInt def = new ValidatedInt(100, 100, 50);
-        public ValidatedInt val = new ValidatedInt(1500, 1500, 200);
+        public ValidatedInt peak = new ValidatedInt(1500, 1500, 200);
         public boolean transition = false;
         public int transitionTime = 30;
     }
