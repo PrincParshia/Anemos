@@ -10,7 +10,8 @@ import net.minecraft.world.level.Level;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-import static princ.anemos.client.Constants.configGeneral;
+import static princ.anemos.client.Constants.fog;
+
 
 @Mixin(AtmosphericFogEnvironment.class)
 public class AtmosphericFogEnvironmentMixin {
@@ -23,8 +24,8 @@ public class AtmosphericFogEnvironmentMixin {
                     ordinal = 0
             )
     )
-    Object modifyNetherFogEnvironmentalStart(Object original, FogData fog, Camera camera, ClientLevel level, float renderDistance, DeltaTracker deltaTracker) {
-        if (level.dimension() == Level.NETHER && configGeneral.fog.netherHorizon) {
+    Object modifyEnvironmentalStart(Object original, FogData fog, Camera camera, ClientLevel level, float renderDistance, DeltaTracker deltaTracker) {
+        if (level.dimension() == Level.NETHER && fog().netherHorizon) {
             float fogEndDistance = 96.0F;
             float fogStartDistance = 10.0F;
             float renderDistanceFogSpan = fogEndDistance - fogStartDistance;
@@ -41,8 +42,8 @@ public class AtmosphericFogEnvironmentMixin {
                     ordinal = 1
             )
     )
-    Object modifyNetherFogEnvironmentalEnd(Object original, FogData fog, Camera camera, ClientLevel level, float renderDistance, DeltaTracker deltaTracker) {
-        if (level.dimension() == Level.NETHER && configGeneral.fog.netherHorizon) {
+    Object modifyEnvironmentalEnd(Object original, FogData fog, Camera camera, ClientLevel level, float renderDistance, DeltaTracker deltaTracker) {
+        if (level.dimension() == Level.NETHER && fog().netherHorizon) {
             return renderDistance;
         }
         return original;

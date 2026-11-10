@@ -94,6 +94,10 @@ public class Constants {
 		return DARKNESS_DISTANCE_STATE;
 	}
 
+	public static AnemosConfigGeneral.Fog fog() {
+		return configGeneral.fog;
+	}
+
 	public static void toggleGamma(GammaState state, ValidatedInt peak, ValidatedDouble prev, boolean transition, int transitionDuration) {
 		if (transition) {
 			state.resolveValues();

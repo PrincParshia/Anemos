@@ -5,7 +5,7 @@ import net.minecraft.client.renderer.fog.FogRenderer;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
-import static princ.anemos.client.Constants.configGeneral;
+import static princ.anemos.client.Constants.fakeNightVision;
 
 @Mixin(FogRenderer.class)
 public class FogRendererMixin {
@@ -18,7 +18,7 @@ public class FogRendererMixin {
             )
     )
     private static float modifyNightVisionFog(float original) {
-        if (configGeneral.fakeNightVision.enabled.get() && !configGeneral.fakeNightVision.fog) {
+        if (fakeNightVision().enabled.get() && !fakeNightVision().fog) {
             return 0.0F;
         }
         return original;
