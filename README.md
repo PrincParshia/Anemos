@@ -1,9 +1,18 @@
-[![CurseForge](https://img.shields.io/badge/CurseForge-0?style=for-the-badge&logo=curseforge&color=black)](https://www.curseforge.com/minecraft/mc-mods/anemos)
-[![Modrinth](https://img.shields.io/badge/Modrinth-0?style=for-the-badge&logo=modrinth&color=black)](https://modrinth.com/mod/anemos)
+<h2>
+<p align="center">
+  <a href="https://www.curseforge.com/minecraft/mc-mods/anemos">
+    <img src="https://img.shields.io/badge/CurseForge-0?style=for-the-badge&logo=curseforge&color=black">
+  </a>
+  <a href="https://modrinth.com/mod/Anemos">
+    <img src="https://img.shields.io/badge/Modrinth-0?style=for-the-badge&logo=modrinth&color=black">
+  </a>
+  <a href="https://ko-fi.com/princparshia">
+    <img src="https://img.shields.io/badge/Donate%20A%20Cup%20Of%20Coffee-0?style=for-the-badge&logo=ko-fi&color=black">
+  </a>
+</p>
+</h2>
 
-<hr>
-
-## 📗 DESCRIPTION
+## 📘 DESCRIPTION
 
 Anemos is a client-side mod that gives you true fullbright by overriding Minecraft’s brightness cap (raised from 100 to 1500). It removes all darkness and shadows, making everything fully lit — regardless of time, biome, or dimension.
 
