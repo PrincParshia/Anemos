@@ -34,11 +34,11 @@ public class Constants {
 		return Minecraft.getInstance();
 	}
 
-	public static Identifier withDefaultNamespace(final String string) {
+	public static Identifier withDefaultNamespace(String string) {
 		return Identifier.fromNamespaceAndPath(NAMESPACE, string);
 	}
 
-	public static String withKeyMappingPrefix(final String string) {
+	public static String withKeyMappingPrefix(String string) {
 		return "key." + NAMESPACE + "." + string;
 	}
 
@@ -143,8 +143,8 @@ public class Constants {
 	}
 
 	public static void toggle(ValidatedFloat val, SharedNumericState<Float> state, ValidatedBoolean enabled, boolean transition, int transitionDuration) {
+		state.resolveValues();
 		if (transition) {
-			state.resolveValues();
 			if (!state.execTransition) {
 				if (!enabled.get()) {
 					state.end = state.max;
@@ -192,6 +192,7 @@ public class Constants {
 				return state.current = Mth.lerp(state.progress, state.start, state.end);
 			}
 		}
+
 		return val.get();
 	}
 }

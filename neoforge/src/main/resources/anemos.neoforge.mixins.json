@@ -2,7 +2,7 @@
     "required": true,
     "minVersion": "0.8",
     "package": "princ.anemos.client.mixin",
-    "compatibilityLevel": "JAVA_25",
+    "compatibilityLevel": "JAVA_21",
     "client": [
         "renderer.fog.ClientHooksMixin"
     ],

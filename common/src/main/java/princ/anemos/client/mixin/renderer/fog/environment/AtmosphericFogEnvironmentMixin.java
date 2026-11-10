@@ -1,51 +1,51 @@
 package princ.anemos.client.mixin.renderer.fog.environment;
 
-import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.client.Camera;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.fog.FogData;
 import net.minecraft.client.renderer.fog.environment.AtmosphericFogEnvironment;
 import net.minecraft.world.level.Level;
+import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 import static princ.anemos.client.Constants.fog;
 
-
 @Mixin(AtmosphericFogEnvironment.class)
 public class AtmosphericFogEnvironmentMixin {
 
-    @ModifyExpressionValue(
+    @WrapOperation(
             method = "setupFog",
             at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/world/attribute/EnvironmentAttributeProbe;getValue(Lnet/minecraft/world/attribute/EnvironmentAttribute;F)Ljava/lang/Object;",
-                    ordinal = 0
+                    value = "FIELD",
+                    target = "Lnet/minecraft/client/renderer/fog/FogData;environmentalStart:F",
+                    opcode = Opcodes.PUTFIELD
             )
     )
-    Object modifyEnvironmentalStart(Object original, FogData fog, Camera camera, ClientLevel level, float renderDistance, DeltaTracker deltaTracker) {
+    void modifyEnvironmentalStart(FogData instance, float environmentalStart, Operation<Void> original, FogData fog, Camera camera, ClientLevel level, float renderDistance, DeltaTracker deltaTracker) {
         if (level.dimension() == Level.NETHER && fog().netherHorizon) {
             float fogEndDistance = 96.0F;
             float fogStartDistance = 10.0F;
-            float renderDistanceFogSpan = fogEndDistance - fogStartDistance;
-            return renderDistance - renderDistanceFogSpan;
+            environmentalStart = renderDistance - (fogEndDistance - fogStartDistance);
         }
-        return original;
+        original.call(instance, environmentalStart);
     }
 
-    @ModifyExpressionValue(
+    @WrapOperation(
             method = "setupFog",
             at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/world/attribute/EnvironmentAttributeProbe;getValue(Lnet/minecraft/world/attribute/EnvironmentAttribute;F)Ljava/lang/Object;",
-                    ordinal = 1
+                    value = "FIELD",
+                    target = "Lnet/minecraft/client/renderer/fog/FogData;environmentalEnd:F",
+                    opcode = Opcodes.PUTFIELD
             )
     )
-    Object modifyEnvironmentalEnd(Object original, FogData fog, Camera camera, ClientLevel level, float renderDistance, DeltaTracker deltaTracker) {
+    void modifyEnvironmentalEnd(FogData instance, float environmentalEnd, Operation<Void> original, FogData fog, Camera camera, ClientLevel level, float renderDistance, DeltaTracker deltaTracker) {
         if (level.dimension() == Level.NETHER && fog().netherHorizon) {
-            return renderDistance;
+            environmentalEnd = renderDistance;
         }
-        return original;
+        original.call(instance, environmentalEnd);
     }
 }

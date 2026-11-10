@@ -14,7 +14,7 @@ import static princ.anemos.client.Constants.*;
 @Mixin(BlindnessFogEnvironment.class)
 public class BlindnessFogEnvironmentMixin {
 
-    @ModifyVariable(method = "setupFog", at = @At("STORE"), name = "distance")
+    @ModifyVariable(method = "setupFog", at = @At("STORE"), name = "f")
     float modifyDistance(float distance, FogData fog, Camera camera, ClientLevel level, float renderDistance, DeltaTracker deltaTracker) {
         if (removeBlindness().enabled.get()) {
             return calc(blindnessDistance(), blindnessDistanceState(), removeBlindness().enabled, removeBlindness().transition, deltaTracker.getGameTimeDeltaTicks());

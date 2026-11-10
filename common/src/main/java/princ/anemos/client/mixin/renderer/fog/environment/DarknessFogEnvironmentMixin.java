@@ -14,7 +14,7 @@ import static princ.anemos.client.Constants.*;
 @Mixin(DarknessFogEnvironment.class)
 public class DarknessFogEnvironmentMixin {
 
-    @ModifyVariable(method = "setupFog", at = @At("STORE"), name = "distance")
+    @ModifyVariable(method = "setupFog", at = @At("STORE"), name = "f")
     float modifyDistance(float distance, FogData fog, Camera camera, ClientLevel level, float renderDistance, DeltaTracker deltaTracker) {
         if (removeDarkness().enabled.get()) {
             return calc(darknessDistance(), darknessDistanceState(), removeDarkness().enabled, removeDarkness().transition, deltaTracker.getGameTimeDeltaTicks());

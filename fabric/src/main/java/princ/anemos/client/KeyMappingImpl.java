@@ -4,7 +4,7 @@ import com.mojang.blaze3d.platform.InputConstants;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
+import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.KeyMapping;
 
 import static princ.anemos.client.Constants.*;
@@ -18,28 +18,28 @@ public class KeyMappingImpl {
     public static final KeyMapping removeDarknessKey = new KeyMapping(withKeyMappingPrefix("removeDarkness"), InputConstants.Type.KEYSYM, InputConstants.KEY_V, CATEGORY);
 
     public void registerAll() {
-        KeyMappingHelper.registerKeyMapping(gammaKey);
+        KeyBindingHelper.registerKeyBinding(gammaKey);
         ClientTickEvents.END_CLIENT_TICK.register(minecraft -> {
             if (gammaKey.consumeClick()) {
                 toggleGamma(gammaState(), gamma().peak, gammaPrevVal(), gamma().transition, gamma().transitionTime);
             }
         });
 
-        KeyMappingHelper.registerKeyMapping(fakeNightVisionKey);
+        KeyBindingHelper.registerKeyBinding(fakeNightVisionKey);
         ClientTickEvents.END_CLIENT_TICK.register(minecraft -> {
             if (fakeNightVisionKey.consumeClick()) {
                 toggle(nightVisionScale(), nightVisionScaleState(), fakeNightVision().enabled, fakeNightVision().transition, fakeNightVision().transitionTime);
             }
         });
 
-        KeyMappingHelper.registerKeyMapping(removeBlindnessKey);
+        KeyBindingHelper.registerKeyBinding(removeBlindnessKey);
         ClientTickEvents.END_CLIENT_TICK.register(minecraft -> {
             if (removeBlindnessKey.consumeClick()) {
                 toggle(blindnessDistance(), blindnessDistanceState(), removeBlindness().enabled, removeBlindness().transition, removeBlindness().transitionTime);
             }
         });
 
-        KeyMappingHelper.registerKeyMapping(removeDarknessKey);
+        KeyBindingHelper.registerKeyBinding(removeDarknessKey);
         ClientTickEvents.END_CLIENT_TICK.register(minecraft -> {
             if (removeDarknessKey.consumeClick()) {
                 toggle(darknessDistance(), darknessDistanceState(), removeDarkness().enabled, removeDarkness().transition, removeDarkness().transitionTime);

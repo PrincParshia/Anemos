@@ -26,14 +26,14 @@ public class AnemosConfigGeneral extends Config {
     public static class Gamma extends ConfigSection {
         public ValidatedInt def = new ValidatedInt(100, 100, 50);
         public ValidatedInt peak = new ValidatedInt(1500, 1500, 200);
-        public boolean transition = false;
+        public boolean transition = true;
         public int transitionTime = 30;
     }
 
     @Translation(prefix = CONFIG_TRANSLATION_ID + ".fakeNightVision")
     public static class FakeNightVision extends ConfigSection {
         public ValidatedBoolean enabled = new ValidatedBoolean(false);
-        public boolean transition = false;
+        public boolean transition = true;
         public int transitionTime = 10;
         public boolean fog = false;
     }
@@ -41,14 +41,14 @@ public class AnemosConfigGeneral extends Config {
     @Translation(prefix = CONFIG_TRANSLATION_ID + ".removeBlindness")
     public static class RemoveBlindness extends ConfigSection {
         public ValidatedBoolean enabled = new ValidatedBoolean(false);
-        public boolean transition = false;
+        public boolean transition = true;
         public int transitionTime = 20;
     }
 
     @Translation(prefix = CONFIG_TRANSLATION_ID + ".removeDarkness")
     public static class RemoveDarkness extends ConfigSection {
         public ValidatedBoolean enabled = new ValidatedBoolean(false);
-        public boolean transition = false;
+        public boolean transition = true;
         public int transitionTime = 20;
     }
 
