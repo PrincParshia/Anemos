@@ -15,7 +15,7 @@
     "environment": "client",
     "entrypoints": {
         "client": [
-            "princ.anemos.client.FabricCMI"
+            "princ.anemos.client.Anemos"
         ]
     },
     "mixins": [
@@ -26,9 +26,18 @@
     "depends": {
         "fabricloader": ">=${fabric_loader_version}",
         "fabric-api": "*",
-        "minecraft": ">=${minecraft_version_min} <=${minecraft_version_max}",
+        "minecraft": "${minecraft_version}",
         "fzzy_config": "*",
         "java": ">=${java_version}"
+    },
+    "custom": {
+        "modmenu": {
+            "links": {
+                "modmenu.modrinth": "https://modrinth.com/mod/anemos",
+                "modmenu.curseforge": "https://www.curseforge.com/minecraft/mc-mods/anemos",
+                "modmenu.kofi": "https://ko-fi.com/princparshia"
+            }
+        }
     }
 }
   

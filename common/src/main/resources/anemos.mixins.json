@@ -4,6 +4,7 @@
     "package": "princ.anemos.client.mixin",
     "compatibilityLevel": "JAVA_25",
     "client": [
+        "LivingEntityRendererMixin",
         "OptionsMixin",
         "renderer.GameRendererMixin",
         "renderer.LightmapRenderStateExtractorMixin",
@@ -15,6 +16,9 @@
     ],
     "injectors": {
         "defaultRequire": 1
+    },
+    "overwrites": {
+        "requireAnnotations": true
     }
 }
 

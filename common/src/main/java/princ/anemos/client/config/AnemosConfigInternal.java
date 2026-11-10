@@ -22,7 +22,7 @@ public class AnemosConfigInternal extends Config {
 
     public static class Gamma extends ConfigSection {
         public final double min = 0.0, max = 15.0;
-        public ValidatedDouble prev = new ValidatedDouble(fromPercent(configGeneral.gamma.def.get()), this.max, this.min);
+        public ValidatedDouble prev = new ValidatedDouble(fromPercent(gamma().def.get()), this.max, this.min);
     }
 
     public static class FakeNightVision extends ConfigSection {

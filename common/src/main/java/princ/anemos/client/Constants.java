@@ -94,9 +94,13 @@ public class Constants {
 		return DARKNESS_DISTANCE_STATE;
 	}
 
+	public static AnemosConfigGeneral.Fog fog() {
+		return configGeneral.fog;
+	}
+
 	public static void toggleGamma(GammaState state, ValidatedInt peak, ValidatedDouble prev, boolean transition, int transitionDuration) {
+		state.resolveValues();
 		if (transition) {
-			state.resolveValues();
 			if (!state.execTransition) {
 				state.current = gammaVal().get();
 				state.start = state.current;
@@ -139,8 +143,8 @@ public class Constants {
 	}
 
 	public static void toggle(ValidatedFloat val, SharedNumericState<Float> state, ValidatedBoolean enabled, boolean transition, int transitionDuration) {
+		state.resolveValues();
 		if (transition) {
-			state.resolveValues();
 			if (!state.execTransition) {
 				if (!enabled.get()) {
 					state.end = state.max;

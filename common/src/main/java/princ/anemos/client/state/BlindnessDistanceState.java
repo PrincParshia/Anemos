@@ -1,19 +1,24 @@
 package princ.anemos.client.state;
 
+import princ.anemos.client.config.AnemosConfigInternal;
+
 import static princ.anemos.client.Constants.configInternal;
 import static princ.anemos.client.Constants.minecraft;
 
 public class BlindnessDistanceState extends SharedNumericState<Float> {
 
     public BlindnessDistanceState() {
-        float min = configInternal.removeBlindness.minDist;
-        float max = configInternal.removeBlindness.maxDist;
-        super(min, max, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, false);
+        super(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, false);
+    }
+
+    private AnemosConfigInternal.RemoveBlindness removeBlindness() {
+        return configInternal.removeBlindness;
     }
 
     @Override
     public void resolveValues() {
         this.max = (float) (minecraft().options.renderDistance().get() * 16);
-        configInternal.removeBlindness.maxDist = this.max;
+        this.removeBlindness().maxDist = this.max;
+        this.min = this.removeBlindness().minDist;
     }
 }

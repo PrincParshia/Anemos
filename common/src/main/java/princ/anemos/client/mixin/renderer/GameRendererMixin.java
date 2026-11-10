@@ -20,7 +20,7 @@ import static princ.anemos.client.Constants.*;
 public class GameRendererMixin {
 
     @WrapOperation(
-            method = "getNightVisionScale",
+            method = "nightVisionScale",
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/world/entity/LivingEntity;getEffect(Lnet/minecraft/core/Holder;)Lnet/minecraft/world/effect/MobEffectInstance;"
@@ -33,7 +33,7 @@ public class GameRendererMixin {
         return original.call(camera, effect);
     }
 
-    @ModifyReturnValue(method = "getNightVisionScale", at = @At("RETURN"))
+    @ModifyReturnValue(method = "nightVisionScale", at = @At("RETURN"))
     private static float modifyNightVisionScale(float original, LivingEntity camera, float a) {
         if (fakeNightVision().enabled.get()) {
             DeltaTracker deltaTracker = Minecraft.getInstance().getDeltaTracker();

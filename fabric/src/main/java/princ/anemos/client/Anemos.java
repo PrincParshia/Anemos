@@ -2,16 +2,15 @@ package princ.anemos.client;
 
 import net.fabricmc.api.ClientModInitializer;
 
-public class FabricCMI implements ClientModInitializer {
+public class Anemos implements ClientModInitializer {
     public KeyMappingImpl keyMapping;
 
-    public FabricCMI() {
+    public Anemos() {
         this.keyMapping = new KeyMappingImpl();
     }
 
     @Override
     public void onInitializeClient() {
-        Anemos.init();
         this.keyMapping.registerAll();
     }
 }

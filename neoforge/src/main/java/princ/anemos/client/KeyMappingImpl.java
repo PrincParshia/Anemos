@@ -14,10 +14,10 @@ import static princ.anemos.client.Constants.*;
 @EventBusSubscriber(modid = NAMESPACE, value = Dist.CLIENT)
 public class KeyMappingImpl {
     public static final KeyMapping.Category CATEGORY = KeyMapping.Category.register(withDefaultNamespace("default"));
-    public static final Lazy<KeyMapping> gammaKey = Lazy.of(() -> new KeyMapping(withKeyMappingPrefix("gamma"), InputConstants.Type.KEYSYM, InputConstants.KEY_G, CATEGORY));
-    public static final Lazy<KeyMapping> fakeNightVisionKey = Lazy.of(() -> new KeyMapping(withKeyMappingPrefix("fakeNightVision"), InputConstants.Type.KEYSYM, InputConstants.KEY_N, CATEGORY));
-    public static final Lazy<KeyMapping> removeBlindnessKey = Lazy.of(() -> new KeyMapping(withKeyMappingPrefix("removeBlindness"), InputConstants.Type.KEYSYM, InputConstants.KEY_B, CATEGORY));
-    public static final Lazy<KeyMapping> removeDarknessKey = Lazy.of(() -> new KeyMapping(withKeyMappingPrefix("removeDarkness"), InputConstants.Type.KEYSYM, InputConstants.KEY_V, CATEGORY));
+    public static final Lazy<KeyMapping> gammaKey = Lazy.of(() -> new KeyMapping(withKeyMappingPrefix("gamma"), InputConstants.Type.KEYBOARD, InputConstants.KEY_G, CATEGORY));
+    public static final Lazy<KeyMapping> fakeNightVisionKey = Lazy.of(() -> new KeyMapping(withKeyMappingPrefix("fakeNightVision"), InputConstants.Type.KEYBOARD, InputConstants.KEY_N, CATEGORY));
+    public static final Lazy<KeyMapping> removeBlindnessKey = Lazy.of(() -> new KeyMapping(withKeyMappingPrefix("removeBlindness"), InputConstants.Type.KEYBOARD, InputConstants.KEY_B, CATEGORY));
+    public static final Lazy<KeyMapping> removeDarknessKey = Lazy.of(() -> new KeyMapping(withKeyMappingPrefix("removeDarkness"), InputConstants.Type.KEYBOARD, InputConstants.KEY_V, CATEGORY));
 
     @SubscribeEvent
     public static void registerAll(RegisterKeyMappingsEvent event) {
